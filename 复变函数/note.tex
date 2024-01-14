@@ -1,0 +1,129 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{note}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\quad\&\quad}
+
+
+\begin{document}
+\maketitle
+\begin{center}
+例 7 设 $f(z)=u(r, \theta)+\mathrm{i} v(r, \theta)$ 对所有 $z \in \mathbb{C}\left(z=r \mathrm{e}^{\mathrm{i} \theta}\right)$ 解 析, 证明
+$$
+\int_0^{2 \pi}[u(r, \theta) \cos \theta-v(r, \theta) \sin \theta] \mathrm{d} \theta=0
+$$
+证 设 $f(z)$ 沿着闭曲线 $|z|=1$ 的积分, $C:|z|=1$ 的参数表示
+$$
+C: z(t)=\mathrm{e}^{\mathrm{i} \theta} \quad 0 \leqslant \theta \leqslant 2 \pi
+$$
+由柯西积分定理知
+$$
+\begin{aligned}
+0= & \oint_{|z|=1} f(z) \mathrm{d} z=\int_0^{2 \pi}[u(r, \theta)+\mathrm{i} v(r, \theta)] \mathrm{i}[\cos \theta+\mathrm{i} \sin \theta] \mathrm{d} \theta \\
+= & \mathrm{i} \int_0^{2 \pi}[u(r, \theta) \cos \theta-v(r, \theta) \sin \theta] \mathrm{d} \theta \\
+& -\int_0^{2 \pi}[u(r, \theta) \sin \theta+v(r, \theta) \cos \theta] \mathrm{d} \theta \\
+& \therefore \int_0^{2 \pi}[u(r, \theta) \cos \theta-v(r, \theta) \sin \theta] \mathrm{d} \theta=0
+\end{aligned}
+$$
+\end{center}
+\vspace*{15pt}
+
+\begin{center}
+    例 10 计算积分 $\oint_C \frac{\sin z}{4 z+\pi} \mathrm{d} z$, 其中 $C$ 是 $|z|=1$ 逆时针方向.(Cauchy公式的逆用)
+$$
+\text { 解 } \begin{aligned}
+\oint_C \frac{\sin z}{4 z+\pi} \mathrm{d} z & =\frac{1}{4} \oint_{|z|=1} \frac{\sin z}{z-\left(-\frac{\pi}{4}\right)} \mathrm{d} z \\
+& =\frac{1}{4} \cdot 2 \pi \mathrm{i} \sin \left(-\frac{\pi}{4}\right)=-\frac{\sqrt{2}}{4} \pi \mathrm{i}
+\end{aligned}
+$$
+\end{center}
+
+\begin{center}
+    例 11 计算积分 $\oint_C \frac{1}{4 z^2+4 z-3} \mathrm{~d} z$, 其中 $C$ 为
+    (a) $|z|=1$, 逆时针方向;
+    (b) $\left|z+\frac{3}{2}\right|=1$, 逆时针方向；
+    (c) $|z|=3$, 逆时针方向.
+    解 $\frac{1}{4 z^2+4 z-3}=\frac{1}{(2 z-1)(2 z+3)}$
+    $$
+    \begin{aligned}
+    & =\frac{1}{4} \frac{1}{(z-1 / 2)(z+3 / 2)} \\
+    & =\frac{1}{8}\left(\frac{1}{z-1 / 2}-\frac{1}{z+3 / 2}\right)
+    \end{aligned}
+    $$
+    $$
+    \text { (a) } \begin{aligned}
+    \oint_{|z|=1} \frac{1}{4 z^2+4 z-3} \mathrm{~d} z & =\frac{1}{8}\left(\oint_{|z|=1} \frac{1}{z-1 / 2} \mathrm{~d} z-\oint_{|z|=1} \frac{1}{z+3 / 2} \mathrm{~d} z\right) \\
+    & =\frac{1}{8} \cdot 2 \pi \mathrm{i}=\frac{\pi \mathrm{i}}{4} ;
+    \end{aligned}
+    $$
+    (b)
+$$
+\begin{aligned}
+\oint_{\left|z+\frac{3}{2}\right|=1} \frac{1}{4 z^2+4 z-3} \mathrm{~d} z= & \frac{1}{8}\left[\oint_{\left|z+\frac{3}{2}\right|=1} \frac{1}{z-1 / 2} \mathrm{~d} z\right. \\
+& \left.-\oint_{\left|z+\frac{3}{2}\right|=1} \frac{1}{z+3 / 2} \mathrm{~d} z\right] \\
+& =-\frac{1}{8} 2 \pi \mathrm{i}=-\frac{\pi \mathrm{i}}{4}
+\end{aligned}
+$$
+$$
+\text { (c) } \begin{aligned}
+\oint_{|z|=3} \frac{1}{4 z^2+4 z-3} \mathrm{~d} z & =\frac{1}{8}\left[\oint_{|z|=3} \frac{1}{z-1 / 2} \mathrm{~d} z-\oint_{|z|-3} \frac{1}{z+3 / 2} \mathrm{~d} z\right] \\
+& =\frac{1}{8}(2 \pi \mathrm{i}-2 \pi \mathrm{i})=0 .
+\end{aligned}
+$$
+\end{center}
+
+
+定理 3.7 (积分平均值定理) 设 $f(z)$ 在包含闭圆 $C=\{z$; $\left.\left|z-z_0\right|=R\right\}$ 的单连通区域 $D$ 内解析, 则
+$$
+f\left(z_0\right)=\frac{1}{2 \pi} \int_0^{2 \pi} f\left(z_0+\operatorname{Re}^{\mathrm{i} \theta}\right) \mathrm{d} \theta
+$$
+定理 3.8 (最大模原理) 设 $f(z)$ 是 $D$ 内不恒为常数的解析函 数,则 $|f(z)|$ 的最大值不能在 $D$ 内取到.\\
+定理 3. $7^{\prime}$ (最大模原理)设 $f(z)$ 在有界区域 $D$ 上解析且不恒 为常数. 如果 $f(z)$ 在 $\bar{D}$ 上连续, 设 $M$ 是 $|f(z)|$ 在 $\bar{D}$ 上的最大值, 则它 只能在边界上达到.\\
+(最小模原理) 设 $f(z)$ 是 $D$ 内不恒为常数的解析函数, 如果 对于所有的 $z \in D$ 有 $|f(z)| \geqslant m(m>0)$, 则 $|f(z)|$ 在 $D$ 内任 何点处都不能达到最小值 $m$.
+
+% \begin{center}
+
+% \end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

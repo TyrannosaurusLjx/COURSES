@@ -1,0 +1,75 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{可测集由开集和闭集来逼近}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\quad\&\quad}
+
+
+\begin{document}
+\maketitle
+\theorem[2.5.1]{(1):$E$可测$\iff (2):\forall\epsilon>0,\exists G\overset{open}{\supset} E\;s.t.m^*(G-E)<\epsilon\iff
+(3):\forall\epsilon>0,\exists F\overset{closed}{\subset} E\;s.t.m^*(E-F)<\epsilon$}
+
+\corollary[2.5.1]{$1.E\text{可测}\iff 2.\forall\epsilon>0,\exists F,G\text{可测且:}F\subset E\subset G:m(G-F)<\epsilon\iff 
+3/\exists G_\delta \text{集} G\supset E\; s.t.m^*(G-E)=0\iff 4.\exists F_\sigma\text{集}F\subset E\;s.t.m^*(E-F)=0$}
+
+\theorem[2.5.2]{设E可测并且测度有限,那么$\forall\epsilon>0$,存在有限个端点为有理数的开区间$I_k,1\leq k\leq n,s.t.m(E\Delta G)<\epsilon$其中$G=\bigcup\limits_{k=1}^n I_k$}
+
+
+\section*{代数,$\sigma$代数与Borel集}
+{\say{X是非空集合,$\mathcal{F}$是X的一个非空集族}}
+
+\Def[代数]{说$\mathcal{F}$是一个代数$\iff 1.X\in \mathcal{F}\;2.\forall F\in  \mathcal{F},F^c\in  \mathcal{F}\;3.\forall F_1,F_2\in  \mathcal{F},F_1\cup F_2 \in  \mathcal{F}$}
+\\这里实际上是有限并.
+\Def[$sigma$代数]{拥有代数的一,二条性质,但第三条改成可数并封闭}
+
+\theorem[2.6.1 设$\mathcal{F}$是X上的一个代数]{1.$X,\emptyset\in\mathcal{F}\;2.forall F_1,F_2\in \mathcal{F},F_1-F_2\in \mathcal{F},F_1\cap F_2\in \mathcal{F}$ 此时 : 若$ \mathcal{F}$是$\sigma$代数,那么$\forall \{F_n\}\subset  \mathcal{F},\bigcap\limits_n F_n\in \mathcal{F}$}
+
+\Def[$ \mathcal{F}\subset\mathcal{P}(X)$]{1.$A( \mathcal{F})=\bigcap\{\text{包含} \mathcal{F} \text{的所有代数}\}\qquad 
+2.B( \mathcal{F})=\bigcap\{\text{包含} \mathcal{F} \text{的所有}\sigma\text{代数}\}$}
+
+实轴上的开区间产生的$\sigma$代数称为$Borel\;\sigma$代数,记为$\mathcal{B}$,其中的元称为Borel集.开集和闭集都是Borel集,粗略的说Borel集是有开集和闭集通过至多可数次并交差补生成的集合
+
+
+\theorem[2.6.2]{Borel集是可测的}
+\proof[2.6.3]{可测集全体$\Omega$是一个包含所有开区间的$\sigma$代数,但$\mathcal{B}$是包含开区间的最小$\sigma$代数,所以$\mathcal{B}\subset\Omega$,从而Borel集是可测集}
+\theorem[2.6.3]{设h是R上的严格单增连续函数,那么h把Borel集映射为Borel集}
+存在是可测集但是不是Borel集的集合
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

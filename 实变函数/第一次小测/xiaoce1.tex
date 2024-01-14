@@ -1,0 +1,694 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{第一次小测}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\quad\&\quad}
+\newenvironment{shi}[1][shi]{\overline{\overline{#1}}}{\par}
+
+
+\begin{document}
+\maketitle
+
+
+\section*{集合}
+\Def[集族]{$\mathcal{X}=\{A\subset X\}$}:即$X$的某些子集构成的集合
+\Def[幂集]{$\mathcal{P}(X)=\{X$的所有子集构成的集合$\}$}
+\Def[集族的并]{$\bigcup A=\bigcup\limits_{\lambda\in\Lambda}A_\lambda=\{x|\exists A\subset X ;s.t. x\in A\}$}
+\Def[集族的交]{$\bigcap A=\bigcap\limits_{\lambda\in\Lambda}A_\lambda=\{x|\forall A\subset X ; x\in A\}$}\\
+这里的$\Lambda$是指标集,可以是有限集也可以是无限集
+
+\section*{性质}
+\theorem[集合运算的性质]{
+    1.集合自己是自己的子集$\quad$2.集合的包含关系具有传递性$\quad$3.集合的取交取并运算有交换律,结合律,分配律$\quad$
+    4.并集的补等于补集的交;交集的补等于补集的并
+}
+
+\Def[De-Moagan公式]{
+    $(\bigcup\limits_{\lambda\in\Lambda}A_\lambda)^c=\bigcap\limits_{\lambda\in\Lambda}A_\lambda^c;
+    (\bigcap\limits_{\lambda\in\Lambda}A_\lambda)^c=\bigcup\limits_{\lambda\in\Lambda}A_\lambda^c$
+    }
+
+\Def[对称差]{$A\Delta B=(A-B)\cup (B-A)=A\cup B-A\cap B$} 满足交换律
+\Def[直积]{$X_1\times X_2=\{(x_1,x_2)|x_1\in X_1,x_2\in X_2\}$
+    称为$X_1$和$X_2$的直积\\
+    同样可以定义n维直积(或者可数多直积)$\prod\limits_{k=1}^nX_i$
+}\\
+在无穷维直积$\prod\limits_{k=1}^\infty X_i$中定义内积$<x,y>=\sum\limits_{i=1}^\infty x_iy_i$\\
+定义度量(p范数)$||x||_p=(\sum\limits_{i=1}^\infty x_i^p)^{\frac{1}{p}}<+\infty;p\geq 1$\\
+    这时候构成的空间我们称为巴拿赫空间$(l^p)(p\geq 1)$(无穷维)\\
+    特别的:当$p=2$时,我们称其为希尔伯特空间(无穷维)$(l^2)$\\
+    
+    在n维希尔伯特空间(也就是欧几里得空间)中的范数为$Euclid$范数,且有如下性质\\
+    1.非负性$d(x,y)\geq 0$当且仅当$x=y$取等\\
+    2.对称性$d(x,y)=d(y,x)$\\
+    3.三角不等式$d(x,y)\leq d(x,z)+d(y,z)\\\quad$
+    事实上所有良定义的度量都要满足这三条性质
+    
+\note[赋范空间的构成]{$x\in l^p\iff \sum\limits_{i=1}^nx_i^p$收敛}
+\example{$x=(\frac{1}{1^{\frac{3}{4}}},\frac{1}{2^{\frac{3}{4}}},\cdots,\frac{1}{n^{\frac{3}{4}}},\cdots)$}不属于$l^1$但是属于$l^2$
+\\
+\\
+
+\section*{集合序列的极限}
+
+\Def[集合序列]{$\{A_n\}_{n=1}^\infty=\{A_1,A_2,\cdots,A_n,\cdots\}$\\
+若有$A_1\subset A_2\subset\cdots\subset A_n\subset \cdots$称序列$\{A_n\}_{n=1}^\infty$单增\\
+若有$A_1\supset A_2\supset\cdots\supset A_n\supset \cdots$称序列$\{A_n\}_{n=1}^\infty$单减}
+
+\Def[上下极限]{\\
+    $B_n=\bigcup\limits_{k=n}^\infty A_n$;称$\{B_n\}_{n=1}^\infty$的交是序列$\{A_n\}_{n=1}^\infty$的上极限,记作
+    $\varlimsup\limits_{n\to\infty}A_n=\bigcap\limits_{n=1}^\infty\bigcup\limits_{k\geq n}A_n$\\
+    $C_n=\bigcap\limits_{k=n}^\infty A_n$;称$\{C_n\}_{n=1}^\infty$的并是序列$\{A_n\}_{n=1}^\infty$的下极限,记作
+    $\varliminf\limits_{n\to\infty}A_n=\bigcup\limits_{n=1}^\infty\bigcap\limits_{k\geq n}A_n$\\
+}
+\note[性质]{\\
+    1.$x\in \varlimsup\limits_{n\to\infty}A_n\iff \forall N,\exists n>N,s.t.x\in A_ｎ\iff \{A_n\}_{n=1}^\infty$中有无穷多项包含$x$\\
+    (就是说任何大的N后都有包含x的集合,但是这并不说明此后的集合都包含x,从而也可以有无穷多项集合不包含x)\\
+    2.$x\in \varliminf\limits_{n\to\infty}A_n\iff \exists N_x,s.t.\forall n>N_x,x\in A_n\iff \{A_n\}_{n=1}^\infty$中只有有限多项不包含$x$\\
+    (就是说有一个N可以控制x,使得从此以后的项都包含x,那么前面只有有限项不包含x)\\
+    3.$\varliminf\limits_{n\to\infty}A_n\subset \varlimsup\limits_{n\to\infty}A_n$(即下极限包含在上极限中)\\
+    4.当且仅当上极限等于下极限的时候称$\{A_n\}_{n=1}^\infty$的极限存在,记为$\lim\limits_{n\to\infty} A_n$\\
+    5.当$A_n$单调的时候$\{A_n\}$一定有极限,此时(分别为单调增和单调减;${\color{red}这和数列极限不同,数列极限要单调有界才能说有极限,但是集合序列只需要单调}$)
+    \[\lim\limits_{n\to\infty}A_n=\begin{cases}
+        \bigcup\limits_{n=1}^\infty A_n\\
+        \bigcap\limits_{n=1}^\infty A_n
+    \end{cases}\]
+    }
+\begin{proof}[$A_n$单调]\\
+    1.$A_n$增:$\varlimsup\limits_{n\to\infty}A_n=\bigcap\limits_{n=1}^\infty\bigcup\limits_{k\geq n}A_k=
+    \bigcap\limits_{n=1}^\infty\bigcup\limits_{k=1}^\infty A_k=\bigcup\limits_{n=1}^\infty A_n$\\
+    $\varliminf\limits_{n\to\infty}A_n=\bigcup\limits_{n=1}^\infty\bigcap\limits_{k\geq n}A_k=\bigcup\limits_{n=1}^\infty A_n$\\
+    故上极限等于下极限等于$\bigcup\limits_{n=1}^\infty A_n$\\
+    2.$A_n$减:$\varlimsup\limits_{n\to\infty}A_n=\bigcap\limits_{n=1}^\infty A_n$\\
+    $\varliminf\limits_{n\to\infty}A_n=\bigcup\limits_{n=1}^\infty\bigcap\limits_{k\geq n}A_k=
+    \bigcup\limits_{n=1}^\infty\bigcap\limits_{k=1}A_k=\bigcap\limits_{n=1}^\infty A_n$\\
+    故上极限等于下极限等于$\bigcap\limits_{n=1}^\infty A_n$
+\end{proof}
+
+\Def[集合序列极限的相关性质]{
+    \\
+    {\color{red}1.$\bigcap\limits_{n=1}^\infty A_n \subset \varliminf\limits_{n\to\infty}A_n=\bigcup\limits_{n=1}^\infty\bigcap\limits_{k\geq n}A_k
+    \subset \varlimsup\limits_{n\to\infty}A_n=\bigcap\limits_{n=1}^\infty\bigcup\limits_{k\geq n}A_k\subset \bigcup\limits_{n=1}^\infty A_n$}\\
+    2.$(\varliminf\limits_{n\to\infty}A_n)^c=\varlimsup\limits_{n\to\infty}(A_n)^c\quad 
+        (\varlimsup\limits_{n\to\infty}A_n)^c=\varliminf\limits_{n\to\infty}(A_n)^c$\\证明用德摩根律配合上下极限的定义就行
+}
+
+
+
+
+
+
+
+\section*{映射}
+\Def[映射]{$X,Y$是两个集合,在其中定义了一个关系$f$,使得$\forall x\in X,\exists ! y\in Y,s.t.x\to y$\\
+y是x在f下的像,x是y在f下的原像\\
+满射:$\forall y\in Y,\exists x\in X,s.t.y=f(x)$称f是一个满射,或者完全映射\\
+单射:$\forall x_1\neq x_2,f(x_1)\neq f(x_2)$称f是一个单射(或者一一映射,这里和数分的说法有矛盾,数分的一一映射指的是这里的双射)\\
+双射:既是单射又是满射;\\
+}
+
+$A\subset X.B\subset Y$有:\\
+1.$f(A)=\{f(x)|x\in A\}\subset Y$称为A在f下的像\\
+2.$f^{-1}(B)=\{x\in X|f(x)\in B\}\subset X$称为B在f下的原像
+
+映射性质:复合映射,复合映射满足交换律
+
+\theorem[定理]{
+    $f:X\to Y,\Gamma$是指标集\\
+    $1.f(\bigcup\limits_{\gamma\in\Gamma}A_\gamma)=\bigcup\limits_{\gamma\in\Gamma}f(A_\gamma)\quad
+    {\color{red}{f(\bigcap\limits_{\gamma\in\Gamma}A_\gamma)\subset\bigcap\limits_{\gamma\in\Gamma}f(A_\gamma)}}\\
+    2.B_1\subset B_2\subset Y\Rightarrow f^{-1}(B_1)\subset f^{-1}(B_2)\\
+    3.f^{-1}(\bigcup\limits_{\beta\in\Gamma}B_\gamma)=\bigcup\limits_{\beta\in\Gamma}f(B_\gamma)\\
+    4.f^{-1}(B^c)=(f^{-1}(B))^c$
+}
+\begin{proof}[1的证明]
+    $y\in f(\bigcup\limits_{\gamma\in\Gamma}A_\gamma)\iff \exists x\in \bigcup\limits_{\gamma\in\Gamma}A_\gamma
+    ,s.t.y=f(x)\iff \exists {\gamma_0}\in\Gamma ,s.t. x\in A_{\gamma_0}\iff y=f(x)\in f(A_{\gamma_0})\subset 
+    \bigcup\limits_{\gamma\in\Gamma}f(A_\gamma)$得证\\
+    $y\in f(\bigcap\limits_{\gamma\in\Gamma}A_\gamma)\iff \exists x\in \bigcap\limits_{\gamma\in\Gamma}A_\gamma
+    ,s.t.y=f(x)\Rightarrow \quad\forall \gamma\in\Gamma ,\exists x_\gamma\in A_\gamma s.t.y=f(x_\gamma)\Rightarrow 
+    \forall \gamma\in\Gamma ,y\in f(A_\gamma)\Rightarrow y\in \bigcap\limits_{\gamma\in\Gamma}f(A_\gamma)$
+    \\(这里的不等号主要是因为f不一定是单射,第一个推出符号拉回来的时候$A_\gamma$可以没有公共的$x_\gamma$)
+    \\其他的证明是平凡的
+\end{proof}
+
+
+
+\section*{特征函数}
+\Def[$\mathcal{X}_A(x)$]{
+    $A\subset X:\mathcal{X}_A(x)=
+        \begin{cases}
+            1\quad x\in A\\
+            0\quad x\in X-A
+        \end{cases}$
+}
+
+\theorem[性质]{\center{
+    1.集合相等当且仅当他们的特征函数相等\\
+    2.$A\subset B \to\mathcal{X}_A(x)\leq \mathcal{X}_B(x)$\\
+    3.$\mathcal{X}_{A\cap{B}}(x)=\mathcal{X}_A(x)\mathcal{X}_B(x)$\\
+    4.$\mathcal{X}_{A\cup{B}}(x)=\mathcal{X}_A(x)+\mathcal{X}_B(x)-\mathcal{X}_{A\cap{B}}(x)$\\
+    5.$\mathcal{X}_{A-B}(x)=\mathcal{X}_A(x)(1-\mathcal{X}_B(x))$\\
+    6.$\mathcal{X}_{A\Delta B}(x)=|\mathcal{X}_A(x)-\mathcal{X}_B(x)|$\\
+    7.$\mathcal{X}_{\varlimsup\limits_{n\to\infty}A_n}(x)=\varlimsup\limits_{n\to\infty}\mathcal{X}_{A_n}(x)$\\
+    8.$\mathcal{X}_{\varliminf\limits_{n\to\infty}A_n}(x)=\varliminf\limits_{n\to\infty}\mathcal{X}_{A_n}(x)$\\
+证明在最后手写}}
+\\\\\\
+
+\section*{集合的等价,基数(势)}
+
+\Def[集合等价]{A和B等价即A,B之间存在一个双射;称A,B有相同的基数,用$A\sim B$表示}
+
+\theorem[集族的并的等价]{
+    $\{A_\lambda|\lambda\in\Lambda\},\{B_\lambda|\lambda\in\Lambda\}$分别是两个元素两两不交的集族,如果
+        $\forall \lambda\in\Lambda ,A_\lambda \sim B_\lambda\Rightarrow \bigcup\{A_\lambda|\lambda\in\Lambda\}\sim
+        \bigcup \{B_\lambda|\lambda\in\Lambda\}$
+}
+
+\begin{proof}[集族并的等价]
+    因为$\forall \lambda\in\Lambda,A_\lambda\sim B_\lambda$故$\exists f_\lambda$是$A_\lambda$到$B_\lambda$的双射,
+    定义$f;s.t.f_{|A_\lambda}=f_\lambda$即可(这里用到了集族的元两两不交)
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\Def[集合的划分]{
+    1.有限集$\quad$2.无限集:可数集 \& 不可数集\\
+    所谓可数集就是能和自然数集建立一一对应的集合(换言之其中的元能以一个顺序完全排列),若否的无限集就是不可数集.
+}
+
+\theorem[1.4.3]{
+    \begin{center}
+        1.任一无限集必包含一个可数子集\\
+        2.可数集的任一无限子集是可数集\\
+        3.至多可数个可数集的并是可数的\\
+    \end{center}
+}
+
+\begin{proof}[1.4.3]
+    1.$a_1\in A,a_n\in A-\bigcup\limits_{k=1}^{n-1}a_k$那么$\{a_n\}$就是一个可数子集\\
+    2.$E\subset A\sim N,\left(\begin{aligned} & n_1=\min \left\{n: a_n \in E\right\} 
+        \\ & n_2=\min \left\{n: a_n \in E \text { 且 } n>n_1\right\} \\ & n_3=\min 
+        \left\{n: a_n \in E \text { 且 } n>n_2\right\}\\\cdots\end{aligned}\right)$
+        那么$E=\left\{a_{n_1}, a_{n_2}, \cdots, a_{n_k,} \cdots\right\}$\\就是一个可数集\\
+    3.类似$Cauchy$乘积
+\end{proof}
+
+\note[1.4.3推论]{Q是可数集}
+\\\\
+\theorem[凡无限集必定和其一真子集等价]{证明如下}
+{\center{\lemma[若A是无限集且B至多是可数集,则$A\sim A\cup B$]{
+    不妨设$A\cap B\neq\emptyset$,若否\\取$B_1=B-A$,则$A\cup B=A\cup B_1;$\\
+    由定理1.4.3:A包含一个可数子集,记为E:\\
+    考虑$h:A\to A\cup B=\begin{cases}
+        i:A-E\to A-E\subset A\cup B\\
+        f^{-1}\circ g:E\to E\cup B\;here:E\xlongequal{g}{} N;E\cup B\;B\xlongequal{f}{} N
+    \end{cases}$\\从而$A\sim A\cup B$\\
+}}
+由引理和定理1.4.3:A有一个可数子集E,且$A-E$(无限集)和$A=(A-E)\cup E$等价}
+
+
+
+\example{$\{I_\lambda\}_{\lambda\in\Lambda}$是R中两两不交的开区间族,则其至多可数:
+    $\Lambda$是有限集则显然有限,当其为无限集:$\forall\lambda\in\Lambda,\exists\gamma_\lambda\in Q\cap I_\lambda$ 
+    $f:\{\gamma_\lambda\}_{\lambda\in\Lambda}\subset Q\to \{I_\lambda\}_{\lambda\in\Lambda}\;$
+    $so\;\shi[\{I_\lambda\}]{_{\lambda\in\Lambda}}\leq \shi[Q]{}$    
+}
+\note[证明A最多是可数集]{\color{red}从上面的例题可以看出证明一个集合最多是可数集可以建立一个A到Q的单射来证明}
+
+\Def[连续统势]{闭区间$[0,1]$是不可数集,与其等价的集合我们都称为连续统,称其有连续统势}
+\theorem[连续统势]{任何区间具有连续统势,特别的R是实属连续统}
+
+
+
+
+
+
+
+
+\section*{连续统势}
+\begin{center}
+    一.n元数列全体(A)具有连续统势:
+    $B_{n,m}=\{n\text{元数列}\{a_k\},k\geq m:a_k=0\}\text{.则}\bigcup\limits_{n=1}^\infty B_{n,m}\text{为n元数列全体}$\\
+\end{center}
+\begin{proof}[n元数列全体具有连续统势]{证明无限n元数列具有连续统势}\\
+    1.有限n元数列全体可数:有限集的可数并是可数集\\
+    2.往证无限n元数列$\sim (0,1]$\\
+    \center{$\forall x\in (0,1],\exists !k_1.s.t.\frac{k_1-1}{n}<x \leqslant \frac{k_1}{n}$\\
+    取$a_1=k_1-1$,又有唯一的$k_2,s.t.\frac{k_1-1}{n}+\frac{k_2-1}{n^2}<x \leqslant \frac{k_1-1}{n}+\frac{k_2}{n^2}$\\
+    取$a_2=k_2-1$,以此类推,有:$\sum_{i=1}^m \frac{k_i-1}{n^i}<x \leqslant \sum_{i=1}^{m-1} \frac{k_i-1}{n^i}+\frac{k_m}{n^m}$\\
+    令m趋近于无穷就有$x=\sum_{i=1}^{\infty} \frac{a_i}{n^i}$\\
+    从而我们得到一个映射$f:(0,1]\to A:f(x)=f(x)=\left\{a_1, a_2, \cdots, a_i, \cdots\right\} .$且f是双射}
+\end{proof}
+
+
+\begin{center}
+    二.可数集的子集全体有连续统势\\(只需证N即可)
+\end{center}
+\begin{proof}[$N\sim\mathcal{P}(N)$]
+    $f:\mathcal{P}(N);\to \text{二元数列全体};f(A)=\left\{a_1, a_2, \cdots\right\}, \quad f(\varnothing)=\{0,0, \cdots\}:
+    and\;a_n= \begin{cases}1, & n \in A \\ 0, & n \in \mathbf{N}-A\end{cases}$是一个双射
+\end{proof}
+
+
+\begin{center}
+    三.至多可数个有连续统势的集的直积有连续统势\\
+    也是证明其与二元数列全体等价
+\end{center}
+
+\Def[推论]{1.$\text{平面}R^2\text{,和空间}R^3\text{有连续统势,一般的}R^n\sim R^\infty\text{有连续统势}$\\
+2.实数列全体有连续统势}
+
+\section*{基数比较}
+\theorem[$Bernstein$定理]{
+    1.对任何集$A, \overline{\overline{A}} \leqslant \overline{\overline{A}}$\\
+    2.若$\overline{\overline{A}} \leqslant \overline{\overline{B}},\overline{\overline{B}} \leqslant \overline{C}\text{则} 
+    \overline{\overline{A}} \leqslant \overline{\overline{C}}$\\
+    3.若$\overline{\overline{A}} \leqslant \overline{\overline{B}},\overline{\overline{B}} \leqslant \overline{\overline{A}}\text{则}
+    \overline{\overline{A}} = \overline{\overline{B}}$
+    }
+\theorem[1.1]{$A_0\supset A_1\supset A_2,and\;A_0 \sim A_2$ 则 $a_0\sim A_2$}
+
+\Def[基数大小关系]{$\overline{\overline{A}} \leqslant \overline{\overline{B}}\iff \text{存在从A到B的单射}\iff \exists B_1\subset B\;s.t.\;A\sim B_1$\\
+.$\qquad$(严格小则集合之间没有双射)}
+
+\example[R上的连续函数有连续统势]{R上的连续函数有连续统势}
+
+\theorem[1.4.12]{不存在基数最大的集:$\mu < 2^\mu$}
+
+\proof[1.4.12]{
+    先证明$\mu\leq 2^\mu$,我们发现$\phi: A\to \mathcal{P}(A);\phi(x)=\{x\}$是单射,从而A的基数小于等于$\mathcal{P}(A)$\\
+    再证明$\mu\neq 2^\mu$,反设存在相等,则存在一个A到其幂集的双射$f:A\to \mathcal{P}(A);x\to f(x)\in\mathcal{P}(A)$.作集合$A^*\{x\in A|x\notin f(x)\}\subset A$
+    从而$A^*\in \mathcal{P}(A)\;i.e.\exists x^*\in A,s.t.f(x^*)=A^*$
+    \\$1.x^*\in A^*:$但根据$A^*$定义,矛盾,$2.x^*\notin A^*\Rightarrow x\in A^*$矛盾!
+    综上证毕!
+}
+
+$\chi=2^{\chi_0}$
+
+\Def[连续统假设;CH:]{
+    在阿列夫零和阿列夫之间没有别的基数
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{\say{这里的$R^n$是n维欧式空间,在其中已经定义了范数和距离}
+}\vspace*{15pt}
+
+\Def[邻域]{$x\in R^n,\epsilon>0;V(x,\epsilon)=\{y\in R^n|d(x,y)<\epsilon\}$称为x的$\epsilon$邻域\\
+.$\qquad \text{E称为x的邻域}\iff \exists\epsilon>0\;s.t.V(x,\epsilon)\subset E$} 
+
+\theorem[定理1.5.1]{$V(x,\epsilon)$是其每一点的邻域}\vspace*{15pt}
+
+
+\Def[$R^n\text{中的开集和闭集}$]{$G\subset R^n$是其中每一点的邻域,则称G是开集;补集是开集的集合称为闭集}
+
+\theorem[定理1.5.2]{1.全空间和空集定义为既开又闭集 2.开集的有限交和任意并是开集 3.闭集的任意交和有限并是开集}
+
+\theorem[定理1.5.4]{$F\subset R^n\text{是闭集}\iff F\text{中的任何点列}\{x_n\}\text{如果收敛到}x,\text{那么}x\in F$
+:也就是说闭集中的点列如果收敛,那么一定收敛到它自身中}
+\begin{proof}[定理1.5.4]
+    充分性:$\text{假定F是闭集,}\{x_n\}_{n=1}^\infty \text{是F中的数列,并且收敛到x,如果}x\notin F,i.e.x\in F^c.
+    \text{从而存在x的足够小的邻域包含在}F^c$中,但是由于数列是收敛的,当n充分大的时候,数列中的点将全部属于这个邻域,
+    从而这些点在F的补集中,但是数列的点在F中取,这就产生了矛盾\\
+    .必要性:假定任意F中的数列收敛到$x\in F$,反设$F^c$不是开的,则$\exists x_0\in F^c,s.t.\forall\epsilon>0,V(x_0,\epsilon)$
+    不是$x_0$的邻域,按照$\epsilon=\frac{1}{k},k\in N$,取$x_k\in V(x_0,\frac{1}{k})\cap F$,就构成了F中的一个数列,
+    但是这个数列收敛到了$F^c$中,这与条件相悖,从而证明了结论.
+\end{proof}
+
+\Def[$R$中开集]{显然R中开区间是R中开集\\
+.$\qquad \text{若}G\subset R\text{是开集},(a,b)\text{是R中开区间,若:}(a,b)\subset G\text{但是}a,b\notin G.
+\text{则(a,b)称为G的构成区间}$其中a,b可以是无穷}
+
+{\center{
+\lemma[1.5.1]{
+    G是R中开集,那么G中每一个点都属于G的一个构成区间\\
+    ${Proof:}\forall x\in G,\exists\epsilon>0,s.t.o(x,\epsilon)\subset G,let:a=\inf\{a'<x|(a',x)\subset G\},b=\sup\{b'>x|(x,b')\subset G\}$
+    这里a,b都不属于G,否则a,b是内点,从而不是确界 
+}}}
+
+\theorem[定理1.5.5]{R中开集G至多是可数个两两不交的开区间的并\\
+.      由引理1.5.1,G是G的构成区间的并,构成区间是不交的,这样就是一族开区间的并,从而至多是可数的}\vspace*{15pt}
+
+\Def[$R^n$中集的内点,内核,附着点和闭包]{
+    E是x的邻域,则x称为E的内点;E的内点的全体称为E的内核记为$E^o$;若x的任一邻域与E交非空,称x是E的附着点(孤立点也是附着点);E的附着点全体称为E的闭包,记为$\overline{E}$
+}
+
+\theorem[定理1.5.6]{内核是包含于集的最大开集,闭包是包含集的最小闭集(反证法)}
+\note[1.5.6]{集是开集等价于集和内核相等,集是闭集等价于集和闭包相等}
+
+\theorem[$x\in\overline{E}$]{存在$E$中点列使得其收敛到$x$}
+
+
+
+
+{\center{\Def[$R^n$中的聚点,导集,孤立点和完备集]{\noindent
+    聚点:$E\subset R^n,\forall V(x,\epsilon):(V-\{x\})\cap E\neq\emptyset$则x称为E的聚点.
+    也就是存在E中的数列(充分大的时候不恒等于x)收敛到x;\\
+    聚点全体称为集合E的导集,记为$E'$\\
+    若$x\in E,x\notin E'$称x是E的孤立点\\
+    没有孤立点的闭集称为完备集\\
+}}}\vspace*{15pt}
+
+\example[1]{
+    区间$E=(1,2]$的导集是$E'=[1,2]$且E没有孤立点,任何闭区间是完备集
+}\vspace*{15pt}
+
+\theorem[定理1.5.8]{
+    $x\in E'\iff \exists \{x_k\}\subset R^n,x_k\neq x,x_k\to x$
+}
+\theorem[定理1.5.9]{
+    $\overline{E}=E\cup E'$,并且E是完备集的充要条件是其和其导集相等
+}
+\proof[1.5.9]{
+    1.$E'\subset\overline{E}$因为聚点都是附着点,从而有$E\cup E'\subset \overline{E}$;
+    反过来,任取$x\in\overline{E}$有$\{x_k\}\subset E,x_k\to x$则或者存在$x_j\in\{x_k\},s.t.x_j=x$从而$x\in E$
+    或者$\forall j:x_j\neq x.$但是$x_k\to x$,从而$x\in E'\;i.e.\overline{E}\subset E\cup E'$\\
+    2.必要性是显然的,因为这就意味着E中的每个点都是聚点(没有孤立点)充分性:E完备,则E是闭集,从而有$\overline{E}=E\cup E'=E\Rightarrow E'\subset E$
+    再证$E\subset E'$则E中任意一点x的任意领域都包含E中的点,从而存在一个取自于E中的数列,其极限是x并且每一项都不等于x,从而x是聚点
+}\vspace*{15pt}
+
+
+\note[运算性质]{
+(i) $\left(A^c\right)^{\circ}=(\bar{A})^c$
+(ii) $\overline{A^c}=\left(A^{\circ}\right)^c$;
+(iii) $\overline{A \cup B}=\bar{A} \cup \bar{B}$;\\
+(iv) $\overline{A \cap B} \subset \bar{A} \cap \bar{B}:[A=(0,1);B=(1,2)]$;
+(v) $A^{\circ} \cup B^{\circ} \subset(A \cup B)^{\circ}:[A\cap B=\emptyset]$\\
+(vi) $(A \bigcap B)^{\circ}=A^{\circ} \bigcap B^{\circ}$.
+}\vspace*{15pt}
+
+\Def[疏集和稠集]{
+    疏集:任何非空开集必有非空开子集和其不相交; 稠集:任何非空开集和其交非空
+}
+\example[R]{整数集是实数集的疏集,有理数集是实数集的稠集}\vspace*{15pt}
+
+{\theorem[定理1.5.10]{
+    $E\subset R^n$\\
+    \hspace*{1cm}1.E是疏集$\iff (\overline{E})^o=\emptyset;$\\
+    \hspace*{1cm}2.E是稠集$\overline{E}=R^n$
+}}
+\theorem[$1.5.10'$]{若$A\subset B,\overline{A}\supset B$称A是B的稠子集:例如$A=(0,1)\cap Q,B=(0,1)$}
+\proof[1.5.10]{
+    1.充分性:反设闭包中存在一个内点x,那么存在x的开领域V包含于E的闭包,从而V中的点都是附着点.任取V中另一点y,因为y是E的附着点,从而存在y的开领域和E的交非空,
+    这里我们构造了开集V和他的一个开子集V(y),并且开子集和E的交非空,这和E是疏集矛盾;$\;$
+    必要性:也就是说E的闭包中没有内点,任取$x\in R^n$,在x的任一领域中一定存在y不是E的闭包中的点,从而$y\in (\overline{E})^c$(开集),也就说存在y的领域与E的闭包的交是空集,
+    从而与E交也是空集,这也就是说任一开领域V(x)中有一开领域V(y)与E交空,由于x是任取的,那么E是疏集.\\
+    2.充分性:$\overline{E}\subset R^n$是确定的.任取x是全空间中的点,由于E是稠集,从而x的任一开领域与E有交,这就是附着点的定义,从而$x\in\overline{E}\;$;
+    必要性:任取x是全空间中的点,由于x是附着点,从而x的领域和E交非空.由x的任意性即知E是稠集
+}\vspace*{15pt}
+
+R中的完备集F:首先F是闭的且没有孤立点,从而$F^c$是开的,由定理1.5.5其至多是可数个开集的并,并且这些开集的端点互异,否则F有孤立点了.
+\theorem[定理1.5.11]{
+    R中集F是完备的当且仅当R-F是至多可数个两两不相交的无相同端点的开区间的并
+}\vspace*{15pt}
+
+
+{
+\center{
+    构造R中的Cantor完备集\cite{Cantor-set}:\\该集合是通过下述方法构造的:
+    1. 将区间 $[0,1]$ 三等分，去掉中间的开区间 $\left(\frac{1}{3}, \frac{2}{3}\right)$ ，得到两个闭区间的并集
+    $$
+    F_1=\left[0, \frac{1}{3}\right] \cup\left[\frac{2}{3}, 1\right]=F_{1,1} \cup F_{1,2} .
+    $$
+    2. 分别将区间 $F_{1,1}, F_{1,2}$ 再三等分，去掉中间的开区间 $\left(\frac{1}{9}, \frac{2}{9}\right),\left(\frac{7}{9}, \frac{8}{9}\right)$ ，得到四个闭区间的并集
+    $$
+    F_2=\left[0, \frac{1}{9}\right] \cup\left[\frac{2}{9}, \frac{1}{3}\right] \cup\left[\frac{2}{3}, \frac{7}{9}\right] \cup\left[\frac{8}{9}, 1\right]=F_{2,1} \cup F_{2,2} \cup F_{2,3} \cup F_{2,4} .
+    $$
+    3. 这样一直进行下去，到第 $n$ 次分割后得到 $2^n$ 个闭区间的并集
+    $$
+    F_n=\bigcup_{j=1}^{2^n} F_{n, 2^j} .
+    $$
+    取极限就得到 Cantor 三分集
+    $$
+    F=\lim _{n \rightarrow \infty} F_n
+    $$
+    定义$f(x)=\frac{2k-1}{2^{n+1}},x\in F_{n+1,k},k=1,2,\cdots,2^n$称为Cantor函数
+}
+}
+
+\note[Cantor集(函数)的性质]{
+    1.零测集 2.非空有界闭集 3.完备集 4.疏集 5.不可数集\\
+    Cantor函数几乎处处导数值为零但却是个单调增函数
+}
+
+
+
+
+
+
+
+\section*{Cantor三分集}
+\Def[性质]{
+    1.Cantor三分集没有内点:$(\overline{C})^o=C^o=\emptyset$\\
+    2.$G=[0,1]-C$是稠子集\\
+    3.C有连续统势
+}
+
+\section*{$R^n$中的长方体}
+\Def[开长方体]{$\prod\limits_{k=1}^n(a_k,b_k)$;同样能定义半开长方体,闭长方体\\
+其中$b_k-a_k$称为边长,$\prod\limits_{k=1}^n(b_k-a_k)$称为体积;当所有的边长都相等的时候,对应的长方体称为方体.}
+
+\theorem[定理1.5.14]{
+    $R^n$中任意开集是可数个两两不相交的半开方体的并
+}
+
+\section*{$R^n$中的连续函数,点和集之间的距离}
+\Def[连续函数f]{如数学分析中的定义:自变量充分靠近的时候,函数值也充分靠近}
+
+\theorem[5.15]{实值函数$f$在$R^n$上连续的充要条件是:$\forall\alpha > 0$集合$A_\alpha=\{x|f(x)>\alpha\},A_\alpha=\{x|f(x)>\alpha\}$是开集}
+{\proof[5.15]{\center{
+    必要性:任取一点$x\in A_\alpha\Rightarrow f(x)-\alpha>0\Rightarrow \exists V(x),s.t.\forall y\in V(x):f(y)-\alpha>0$\\(连续函数的保号性)\\
+    充分性:任取$x\in R^n$.记$A=\{y|f(y)>f(x)-\epsilon\},B=\{y|f(y)<f(x)+\epsilon\}$\\(这里相当于取$\alpha=f(x)\pm\epsilon$):$\to x\in A\cap B\Rightarrow
+    \exists V(x)\subset A\cap B \Rightarrow \forall y\in V(x),f(x)-\epsilon<f(y)<f(x)+\epsilon.\;i.e.\;|f(x)-f(y)|<\epsilon\Rightarrow f\in C$
+}}}
+
+\lemma[1.5.2]{
+    $D\subset R^n;\forall x,y\in R^n:|d(x,D)-d(y,D)|\leq d(x,y)$
+}
+
+\theorem[1.5.16]{$D\subset R^n:d(x,D)\text{是}x\in R^n\text{的一致连续函数}$}
+
+\theorem[1.5.17(Bolzano-Weierstrass)]{$R^n$中的有界点列必有收敛子列}
+
+\theorem[1.5.18]{$F\overset{closed}\subset {R^n},x\in R^n\Rightarrow \exists y\in F\;s.t.\;d(x,y)=d(x,F)\quad \text{于是当}x\notin F:d(x,F)>0$}
+
+\theorem[1.5.19(闭集套定理)]{$\{f_k\}_{k=1}^\infty\text{是}R^n\text{中的一列单调减的非空有界闭集,则}\bigcap\limits_{k=1}^\infty F_k\neq\emptyset$}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{开覆盖,紧集}
+\theorem[1.5.20]{
+    $R^n$中的紧集是有界闭集
+}
+
+\theorem[1.5.21]{$F\overset{compact}{\subset}R^n,f\in C(F)\Rightarrow (i:)\text{f在F上有界并且能取到最大最小值 }
+\\(ii:)\text{f在F上一致连续 }i.e. \forall\epsilon>0,\exists\delta>0,s.t.\forall d(x,y)<\delta,x,y\in F:|f(x)-f(y)|<\epsilon$}
+{\center{\proof[1.5.21]{
+        1.只需证明连续函数把紧集映射成紧集:$\text{任取}f(F)\text{的开覆盖}H=\bigcup\limits_{\lambda\in\Lambda}H_\lambda\supset f(F);
+        \forall H_\lambda\in H,$\\$\text{考虑其原像}f^{-1}(H_\lambda),\text{则根据连续映射的性质-开集的原像是开集}f^{-1}(H_\lambda)\overset{open}{\subset}R^n;$\\
+        $\Rightarrow \bigcup\limits_{\lambda\in\Lambda}f^{-1}(H_\lambda)\supset F;\text{则这是F的一个开覆盖,但F是紧的,则}\exists\Lambda'\text{是有限集}
+        \bigcup\limits_{\lambda\in\Lambda'}f^{-1}(H_\lambda)\supset F.$\\$\text{再取其像就有}f(F)\subset f(\bigcup\limits_{\lambda\in\Lambda'}f^{-1}(H_\lambda))=
+        \bigcup\limits_{\lambda\in\Lambda'}H_\lambda\;i.e.\text{任意f(F)的开覆盖有有限子覆盖,从而f(F)是紧集}$\\
+        2.首先由f的连续性有$\forall x\in F,\forall\epsilon>0,\exists\delta_x>0\;s.t.\forall y\in O(x,\delta_x):|f(x)-f(y)|<\epsilon;$\\
+        $\text{这里}\bigcup\limits_{x\in F}O(x,\delta_x)\supset F\text{是F的开覆盖,由F的紧致性:}\exists G\subset F\text{是有限集}s.t.\bigcup\limits_{x\in G}O(x,\delta_x)\supset F$\\
+        $let\;\delta=\min\limits_{x\in G}\{\delta_x\},\text{则有:}\forall x,y\in F,d(x,y)<\delta:|f(x)-f(y)|<\epsilon$从而f一致连续
+        }}}\cite{continue-in-compactset-1}\cite{continue-in-compactset-2}
+
+\note[work]{闭集是可数个开集的交,开集是可数个闭集的并}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\Def[外测度]{$m^*(E) = \inf\{\sum\limits_nl(I_n)|\{I_n\}_{n\geq 1}\text{是一列开区间并且}E\subset \bigcup\limits_nI_n\}$}
+
+\Def[次可加性]{$m^*(\bigcup\limits_nE_n)\leq \sum\limits_nm^*(E_n)$}
+
+\Def[可测集]{$E\subset R:if:m^*(E)\geq m^*(A\cap E)+m^*(A\cap E^c)$.就称E是勒贝格可测集,事实上这时候有$m^*(E)= m^*(A\cap E)+m^*(A\cap E^c)$;定义$m(E)=m^*(E)$}
+
+用$\Omega$表示可测集全体
+
+\Def[定理2.3.2]{外测度是零的集合是可测集,并且测度为零,称为零测集.换言之可数集是零测集}
+
+区间的测度就是区间的长度\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+集合E可测从而补集可测\\
+任意区间是可测的,且区间的测度就是区间的长度\\
+\lemma[2.3.2]{$\{E_n\}_{n\geq 1}$是一列不交的可测集,则$\bigcup\limits_n E_n\in\Omega$}
+$(\Omega,m)$空间中有限个元的并和交都是可测的;可数个可测集的交和并也是可测集;集合做差也封闭\\
+实轴上的所有开集(闭集)可测\\
+\Def[$G_\delta-$型集]{$G=\bigcap\limits_{n=1}^\infty G_n;G_n\overset{open}{R}$}
+\Def[$F_\sigma-$型集]{$F=\bigcup\limits_{n=1}^\infty F_n;F_n\overset{closed}{R}$}
+
+可测集测度的可数可加性:$\{E_n\}_{n\geq 1}\subset\Omega$且两两不交的时候:$m(\bigcup\limits_{n=1}^\infty E_n)=\sum\limits_{n=1}^\infty m(E_n)$\\
+
+\Def[定理2.3.6]{集合序列满足$1.\{E_n\}$单增或者$2.\{E_n\}$单减并且$m(\{E_n\})<\infty$:就有测度的极限等于极限的测度i.e.$\lim\limits_{n\to\infty}m(E_n)=m(\lim\limits_{n\to\infty}E_n)$}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\Def[E关于y的平移]{$E\subset R,y\in R:E_y = \{x+y|x\in E\}$称为E关于y的平移}\vspace*{10pt}
+
+\lemma[2.4.1]{$E,F\subset R,\forall y\in R\Rightarrow\\(i):E\cap F_y=(E_{-y}\cap F)_y\\(ii):(E^c)_y=(E_y)^c\\(iii):m^*(E)=m^*(E_y)$}
+\proof[2.4.1]{$1:z\in (E_{-y}\cap F)_y\iff z-y\in E_{-y}\qie z\in F_y\iff (z-y)-(-y)=z\in E\qie z-y\in F\iff z\in E\cap E_y
+\\2.z\in (E^c)_y\iff z-y\in E^c \iff z-y\notin E\iff z\notin E_y\iff z\in (E_y)^c
+\\3.\forall I\text{开区间}:l(I)=l(I_y)\Rightarrow E\subset \bigcup\limits_n I_n\Rightarrow E_y\subset \bigcup\limits_n (I_n)_y\Rightarrow
+m^*(E_y)\leq \sum\limits_{n=1}^\infty l((I_n)_y)=\sum\limits_{n=1}^\infty l(I_n)=m^*(E)\Rightarrow m^*(E)=m^*((E_y)_{-y})\leq m^*(E_y)\Rightarrow m^*(E)=m^*(E_y)$}
+\theorem[2.4.1测度平移不变性]{E可测,那么$\forall y\in R,E_y$可测并且有$m(E)=m(E_y)$}
+\proof[2.4.1]{$\forall A\subset R:m^*(A)=m^*(A_{-y})\overset{E\text{可测}}{\geq}m^*(A_{-y}\cap E)+m^*(A_{-y}\cap E^c)=m^*((A\cap E_y)_{-y})+m^*((A\cap E^c_y)_{-y})=m^*(A\cap E_y)+m^*(A\cap (E_y)^c)$因此$E_y$可测}\vspace*{10pt}
+
+\section*{不可测集案例}
+$\forall x\in [0,1]:E(x)=\{y\in[0,1]:y-x\in Q\}$\\
+$(i):[0,1]=\bigcup\{E(x):x\in[0,1]\}\qie (ii):x_1-x_2\in Q\iff E(x_1)=E(x_2)\qie (iii):\forall x_1,x_2\in [0,1]:E(x_1)=E(x_2)\text{或者}E(x_1)\cap E(x_2)=\emptyset\qie 
+(iv):\exists F\subset [0,1]s.t. \forall x_1,x_2\in F:x_1\neq x_2\iff E(x_1)\cap E(x_2)=\emptyset$\\
+下面证明F不可测\\
+$let\;\{r_n\}_{n=1}^\infty =[-1,1]\cap Q\qie F_n = F_{r_n}=\{x+r_n:x\in F\}\rightleftarrows\\
+(1):\forall m\neq n,F_m\cap F_n = \emptyset\quad since\;if\;\exists z\in F_m\cap F_n\Rightarrow \exists x_m,x_n\in F\;s.t.x_m+r_m=x_n+r_n\Rightarrow x_m-x_n=r_n-r_m\in Q\Rightarrow E(x_m)=E(x_n)\text{矛盾}\;i.e.\{F_n\}_{n\geq 1}\text{互不相交}
+\\(2):[0,1]\subset \bigcup\limits_n F_n\subset [-1,2]$后者是显然的,对于前者,任取$y\in [0,1],\exists x\in F\;s.t.y\in E(x)\Rightarrow y-x\in Q,let\;r_k = y-x\Rightarrow y\in F_k\;i.e.[0,1]\subset \bigcup\limits_n F_n$\\
+假设F可测,由$thm2.4.1:F_n\text{可测并且}m(F_n)=m(F),\text{由可数可加性}:\\1=m([0,1])\leq m(\bigcup\limits_n F_n)=\sum\limits_{n=1}^\infty m(F_n)\leq m([-1,2])=3\;i.e.\leq 1\leq \sum\limits_{n=1}^\infty m(F)\leq 3$
+若$m(F)=0$则和为零,否则$m(F)$严格大于零,从而级数发散到无穷大.两者都矛盾\\
+思考题:$R^n$中不可测集的构造和不可测集的构造机理
+
+
+
+
+
+
+
+
+
+
+
+\theorem[2.5.1]{(1):$E$可测$\iff (2):\forall\epsilon>0,\exists G\overset{open}{\supset} E\;s.t.m^*(G-E)<\epsilon\iff
+(3):\forall\epsilon>0,\exists F\overset{closed}{\subset} E\;s.t.m^*(E-F)<\epsilon$}
+
+\corollary[2.5.1]{$1.E\text{可测}\iff 2.\forall\epsilon>0,\exists F,G\text{可测且:}F\subset E\subset G:m(G-F)<\epsilon\iff 
+3/\exists G_\delta \text{集} G\supset E\; s.t.m^*(G-E)=0\iff 4.\exists F_\sigma\text{集}F\subset E\;s.t.m^*(E-F)=0$}
+
+\theorem[2.5.2]{设E可测并且测度有限,那么$\forall\epsilon>0$,存在有限个端点为有理数的开区间$I_k,1\leq k\leq n,s.t.m(E\Delta G)<\epsilon$其中$G=\bigcup\limits_{k=1}^n I_k$}
+
+
+\section*{代数,$\sigma$代数与Borel集}
+{\say{X是非空集合,$\mathcal{F}$是X的一个非空集族}}
+
+\Def[代数]{说$\mathcal{F}$是一个代数$\iff 1.X\in \mathcal{F}\;2.\forall F\in  \mathcal{F},F^c\in  \mathcal{F}\;3.\forall F_1,F_2\in  \mathcal{F},F_1\cup F_2 \in  \mathcal{F}$}
+\\这里实际上是有限并.
+\Def[$sigma$代数]{拥有代数的一,二条性质,但第三条改成可数并封闭}
+
+\theorem[2.6.1 设$\mathcal{F}$是X上的一个代数]{1.$X,\emptyset\in\mathcal{F}\;2.forall F_1,F_2\in \mathcal{F},F_1-F_2\in \mathcal{F},F_1\cap F_2\in \mathcal{F}$ 此时 : 若$ \mathcal{F}$是$\sigma$代数,那么$\forall \{F_n\}\subset  \mathcal{F},\bigcap\limits_n F_n\in \mathcal{F}$}
+
+\Def[$ \mathcal{F}\subset\mathcal{P}(X)$]{1.$A( \mathcal{F})=\bigcap\{\text{包含} \mathcal{F} \text{的所有代数}\}\qquad 
+2.B( \mathcal{F})=\bigcap\{\text{包含} \mathcal{F} \text{的所有}\sigma\text{代数}\}$}
+
+实轴上的开区间产生的$\sigma$代数称为$Borel\;\sigma$代数,记为$\mathcal{B}$,其中的元称为Borel集.开集和闭集都是Borel集,粗略的说Borel集是有开集和闭集通过至多可数次并交差补生成的集合
+
+
+\theorem[2.6.2]{Borel集是可测的}
+\proof[2.6.3]{可测集全体$\Omega$是一个包含所有开区间的$\sigma$代数,但$\mathcal{B}$是包含开区间的最小$\sigma$代数,所以$\mathcal{B}\subset\Omega$,从而Borel集是可测集}
+\theorem[2.6.3]{设h是R上的严格单增连续函数,那么h把Borel集映射为Borel集}
+存在是可测集但是不是Borel集的集合
+
+
+
+如自然的想法扩充即可\\
+\theorem[2.7.1]{$P\in R^p,Q\in R^q$可测,那么$P\times Q$是$R^{p+q}$中的可测集,并且$m(P\times Q)=m(P)m(Q)$}
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+
+
+\end{document}

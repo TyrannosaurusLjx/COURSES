@@ -1,0 +1,121 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{Preliminaries to Complex Analysis}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+\paragraph*{$Holomopic\;\iff\;Analysis\;:Power-Series$\\}
+
+\theorem[2.5]{$\text { Given a power series } \sum_{n=0}^{\infty} a_n z^n \text {, there exists } 0 \leq R \leq \infty \;s.t.:$\\
+    $1.\text { If }|z|<R ,\text { the series converges absolutely. }$\\
+    $2.\text { (ii) If }|z|>R \text { the series diverges. }$\\}
+
+\Def[R]{$1 / R=\lim \sup \left|a_n\right|^{1 / n}$\\
+    The number $R$ is called the radius of convergence of the power series\\
+    . $\qquad$the region $|z|<R$ the disc of convergence.
+}\vspace*{15pt}
+
+\note[2.6:Remark]{ On the boundary of the disc of convergence, $|z|=R$, 
+the situation is more delicate as one can have either convergence or divergence.}\vspace*{15pt}
+
+\theorem[2.6]{
+    The power series $f(z)=\sum_{n=0}^{\infty} a_n z^n$ defines a holomorphic function in its disc of convergence.
+     The derivative of $f$ is also a power series obtained by differentiating term by term the series for $f$, that is
+     \[f^{\prime}(z)=\sum_{n=0}^{\infty} n a_n z^{n-1}\]
+     $\text { Moreover, } f^{\prime} \text { has the same radius of convergence as } f \text {. }$
+}\vspace*{15pt}\\
+
+\note[2.7]{A power series is infinitely complex differentiable in its disc of convergence, 
+and the higher derivatives are also power series obtained by termwise differentiation.}\vspace*{15pt}
+
+if f has a power series expansion at every point of $\Omega$ ,we say f is analytic on $\Omega$\\
+
+\section*{Integration along curves}
+
+$\gamma$:A parametrized curce is a function z(t) which maps a closed inteval $[a,b]\subset R$ to the complex plane.\\
+\\
+
+\Def[orientation of $C_r(z_0)$]{
+    The positive orientation (counterclockwise) is the one that is given by the standard parametrization
+$$
+z(t)=z_0+r e^{i t}, \quad \text { where } t \in[0,2 \pi]
+$$
+while the negative orientation (clockwise) is given by
+$$
+z(t)=z_0+r e^{-i t}, \quad \text { where } t \in[0,2 \pi]
+$$
+}\vspace*{15pt}
+
+\theorem[3.1]{
+    Integration of continuous functions over cuvers satisfies the following properties:\\
+    (i) It is linear, that is, if $\alpha, \beta \in \mathbb{C}$, then
+$$
+\int_\gamma(\alpha f(z)+\beta g(z)) d z=\alpha \int_\gamma f(z) d z+\beta \int_\gamma g(z) d z
+$$
+(ii) If $\gamma^{-}$is $\gamma$ with the reverse orientation, then
+$$
+\int_\gamma f(z) d z=-\int_{\gamma^{-}} f(z) d z
+$$
+(iii) One has the inequality
+$$
+\left|\int_\gamma f(z) d z\right| \leq \sup _{z \in \gamma}|f(z)| \cdot \operatorname{length}(\gamma)
+$$
+and the $\operatorname{length}(\gamma)=\int_a^b\left|z^{\prime}(t)\right| d t$
+}\vspace*{15pt}
+
+\note[${\color{blue}\int_\gamma f(z) d z}$]{
+    Given a smooth curve $\gamma$ in $\mathbb{C}$ parametrized by $z:[a, b] \rightarrow \mathbb{C}$, and $f$ a continuous function on $\gamma$, we define the integral of $f$ along $\gamma$ by
+$$
+\int_\gamma f(z) d z=\int_a^b f(z(t)) z^{\prime}(t) d t
+$$
+}\vspace*{15pt}
+
+\corollary[3.3]{
+    1.If $\gamma$ is a closed curve in an open set $\Omega$, and $f$ is continuous and has a primitive in $\Omega$, then
+    $$
+    \int_\gamma f(z) d z=0
+    $$\\
+    2.If $f$ is holomorphic in a region $\Omega$ and $f^{\prime}=0$, then $f$ is constant.
+}
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+
+
+
+%\end{figure}
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

@@ -1,0 +1,84 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{测度的平移不变性}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+
+\begin{document}
+\maketitle
+
+\Def[E关于y的平移]{$E\subset R,y\in R:E_y = \{x+y|x\in E\}$称为E关于y的平移}\vspace*{10pt}
+
+\lemma[2.4.1]{$E,F\subset R,\forall y\in R\Rightarrow\\(i):E\cap F_y=(E_{-y}\cap F)_y\\(ii):(E^c)_y=(E_y)^c\\(iii):m^*(E)=m^*(E_y)$}
+\proof[2.4.1]{$1:z\in (E_{-y}\cap F)_y\iff z-y\in E_{-y}\qie z\in F_y\iff (z-y)-(-y)=z\in E\qie z-y\in F\iff z\in E\cap E_y
+\\2.z\in (E^c)_y\iff z-y\in E^c \iff z-y\notin E\iff z\notin E_y\iff z\in (E_y)^c
+\\3.\forall I\text{开区间}:l(I)=l(I_y)\Rightarrow E\subset \bigcup\limits_n I_n\Rightarrow E_y\subset \bigcup\limits_n (I_n)_y\Rightarrow
+m^*(E_y)\leq \sum\limits_{n=1}^\infty l((I_n)_y)=\sum\limits_{n=1}^\infty l(I_n)=m^*(E)\Rightarrow m^*(E)=m^*((E_y)_{-y})\leq m^*(E_y)\Rightarrow m^*(E)=m^*(E_y)$}
+\theorem[2.4.1测度平移不变性]{E可测,那么$\forall y\in R,E_y$可测并且有$m(E)=m(E_y)$}
+\proof[2.4.1]{$\forall A\subset R:m^*(A)=m^*(A_{-y})\overset{E\text{可测}}{\geq}m^*(A_{-y}\cap E)+m^*(A_{-y}\cap E^c)=m^*((A\cap E_y)_{-y})+m^*((A\cap E^c_y)_{-y})=m^*(A\cap E_y)+m^*(A\cap (E_y)^c)$因此$E_y$可测}\vspace*{10pt}
+
+\section*{不可测集案例}
+$\forall x\in [0,1]:E(x)=\{y\in[0,1]:y-x\in Q\}$\\
+$(i):[0,1]=\bigcup\{E(x):x\in[0,1]\}\qie (ii):x_1-x_2\in Q\iff E(x_1)=E(x_2)\qie (iii):\forall x_1,x_2\in [0,1]:E(x_1)=E(x_2)\text{或者}E(x_1)\cap E(x_2)=\emptyset\qie 
+(iv):\exists F\subset [0,1]s.t. \forall x_1,x_2\in F:x_1\neq x_2\iff E(x_1)\cap E(x_2)=\emptyset$\\
+下面证明F不可测\\
+$let\;\{r_n\}_{n=1}^\infty =[-1,1]\cap Q\qie F_n = F_{r_n}=\{x+r_n:x\in F\}\rightleftarrows\\
+(1):\forall m\neq n,F_m\cap F_n = \emptyset\quad since\;if\;\exists z\in F_m\cap F_n\Rightarrow \exists x_m,x_n\in F\;s.t.x_m+r_m=x_n+r_n\Rightarrow x_m-x_n=r_n-r_m\in Q\Rightarrow E(x_m)=E(x_n)\text{矛盾}\;i.e.\{F_n\}_{n\geq 1}\text{互不相交}
+\\(2):[0,1]\subset \bigcup\limits_n F_n\subset [-1,2]$后者是显然的,对于前者,任取$y\in [0,1],\exists x\in F\;s.t.y\in E(x)\Rightarrow y-x\in Q,let\;r_k = y-x\Rightarrow y\in F_k\;i.e.[0,1]\subset \bigcup\limits_n F_n$\\
+假设F可测,由$thm2.4.1:F_n\text{可测并且}m(F_n)=m(F),\text{由可数可加性}:\\1=m([0,1])\leq m(\bigcup\limits_n F_n)=\sum\limits_{n=1}^\infty m(F_n)\leq m([-1,2])=3\;i.e.\leq 1\leq \sum\limits_{n=1}^\infty m(F)\leq 3$
+若$m(F)=0$则和为零,否则$m(F)$严格大于零,从而级数发散到无穷大.两者都矛盾\\
+思考题:$R^n$中不可测集的构造和不可测集的构造机理
+
+下一章节的:用开集和闭集刻画可测集
+
+\theorem[2.5.1]{$E\text{可测}\iff\\ \forall \epsilon>0,\exists G\overset{open}{\supset}E\;s.t.m^*(G-E)<\epsilon\iff \forall \epsilon>0,\exists F\overset{closed}{\subset}E\;s.t.m^*(E-F)<\epsilon$}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

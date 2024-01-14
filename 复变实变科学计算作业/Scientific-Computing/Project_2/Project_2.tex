@@ -1,0 +1,130 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{multicol}
+
+\lstdefinestyle{lfonts}{
+  basicstyle   = \footnotesize\ttfamily,
+  stringstyle  = \color{purple},
+  keywordstyle = \color{blue!60!black}\bfseries,
+  commentstyle = \color{olive}\scshape,
+}
+\lstdefinestyle{lnumbers}{
+  numbers     = left,
+  numberstyle = \tiny,
+  numbersep   = 1em,
+  firstnumber = 1,
+  stepnumber  = 1,
+}
+\lstdefinestyle{llayout}{
+  breaklines       = true,
+  tabsize          = 2,
+  columns          = flexible,
+}
+\lstdefinestyle{lgeometry}{
+  xleftmargin      = 20pt,
+  xrightmargin     = 0pt,
+  frame            = tb,
+  framesep         = \fboxsep,
+  framexleftmargin = 20pt,
+}
+\lstdefinestyle{lgeneral}{
+  style = lfonts,
+  style = lnumbers,
+  style = llayout,
+  style = lgeometry,
+}
+\lstdefinestyle{python}{
+    language = {Python},
+    style    = lgeneral,
+}
+
+
+\title{\huge\textbf{科学计算项目作业2}}
+\author{罗俊勋\\学号:3210101613}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\quad\&\quad}
+
+
+
+\begin{document}
+\maketitle
+\section*{问题}
+用$Romberg$方法计算积分:$\frac{2}{\sqrt{\pi}}\int_0^1e^{-x^2}dx$
+
+\section*{公式和算法}
+基于事实: $R\left(f, T_n\right)=I-T_n=\alpha_2 h^2+\alpha_4 h^4+\alpha_6 h^6+\cdots$ 把 $[a, b]$ 分成 $n\left(h=\frac{b-a}{n}\right)$ 等份, 用复化梯形公式求得近似值 $T_n$, 记 $T_0(h)$. 将 $[a, b]$ 分成 $2 n$ 等份, 得 $T_{2 n}$, 记 $T_0\left(\frac{h}{2}\right)$. 如此等等, 得到 序列 $\left\{T_0\left(\frac{h}{2^k}\right)\right\}$, 应用Richardson外推法, 得到 $T_1\left(\frac{h}{2^k}\right), T_2\left(\frac{h}{2^k}\right), \cdots$. 具体实现: 梯形公式用逐次分半法计算，即 取 $n=1,2,4, \cdots, 2^k, \cdots$, 相应的 $T_0\left(\frac{b-a}{2^k}\right)$ 简记为 $T_0^{(k)}$, 外推 $m$ 次的 序列简记为 $T_m^{(k)}$ ，则 $\left(q=\frac{1}{2}\right)$ ，
+$$
+T_1^{(0)}=\frac{4 T_0^{(1)}-T_0^{(0)}}{4-1} ; \quad T_1^{(1)}=\frac{4 T_0^{(2)}-T_0^{(1)}}{4-1} ;
+$$
+一般的计算公式
+$$
+T_m^{(k)}=\frac{4^m T_{m-1}^{(k+1)}-T_{m-1}^{(k)}}{4^m-1}, k=0,1,2, \cdots
+$$
+
+\pagebreak
+\section*{程序}
+\begin{lstlisting}[style = python]
+    import math
+
+    def f(x):
+        return math.e**(-x**2)
+
+    def T(f,a,b,N):#N=2^n
+        global T_lst 
+        T_lst = {0:(b-a)*(f(a)+f(b))/2}
+        n = int(math.log(N,2))
+        h = (b-a)/N
+        if n==0:
+            return T_lst[0]
+        else:
+            R = 0
+            for i in range(1,2**(n-1)+1):
+                R += f(a+(2*i-1)*h)
+            return 1/2*T(f,a,b,int(N/2))+h*R
+        
+    def Romberg(f,a,b,N,m):#外推m次
+        n = int(math.log(N,2))
+        mat_lst = [[T(f,a,b,2**k) for k in range(n+1)]]
+        for i in range(m):
+            mat_lst.append([0 for k in range(n+1)])
+        for row in range(1,m+1):
+            for line in range(0,n-row+1):
+                mat_lst[row][line] = (4**row*mat_lst[row-1][line+1]-mat_lst[row-1][line])/(4**row-1)
+        return mat_lst[m][n-m]
+    print(2/math.sqrt(math.pi)*Romberg(f,0,1,256,8))
+\end{lstlisting}
+
+\pagebreak
+
+\section*{数据结果}
+准确值0.8427007929497149  \\
+分别取N和外推次数为(N,m)时得到的积分值为:
+$\frac{2}{\sqrt{\pi}}\int_0^1e^{-x^2}dx|_{(N,m)}=\begin{cases} 
+  0.7717433322580536 & (1,0)\\
+  0.8431028300429809 & (2,1)\\
+  0.8427115994791153 & (4,2)\\
+  \vdots \\
+  0.8427007929497152 & (256,8)
+\end{cases}$
+
+\section*{结论}
+使用Romberg方法可以让我们轻松计算一些看起来很"困难"的定积分,
+它使得梯形积分收敛速度大大加快,在本次计算中,可以发现外推两次的时候数值计算结果就精确到了小数点后4位,外推八次的时候已经精确到了小数点后14位,
+由此说明Romberg方法是一种高效准确的数值积分方法
+
+\end{document}

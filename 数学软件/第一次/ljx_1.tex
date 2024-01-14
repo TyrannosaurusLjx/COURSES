@@ -1,0 +1,95 @@
+\documentclass{ctexart}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{作业一: 洛必达法则的叙述与证明}
+
+
+\author{罗俊勋 \\ 数学与应用数学 3210101613}
+
+\begin{document}
+
+\maketitle
+
+
+    这是我们用来求待定型分式的极限的方法
+\section{问题描述}
+问题叙述如下: 设函数$f(x)$和$g(x)$在区间$(a,a+d]$上可导,(d是某个正常数),且$g'(x)\neq 0$,若此时有
+  \[
+  \lim\limits_{x \rightarrow a^{+}}g(x) =\lim\limits_{x\to a^{+}}f(x)=0
+  \]
+  或者有
+  \[
+  \lim\limits_{x \rightarrow a^{+} }g(x)=\infty
+  \]
+  且$\lim\limits_{x \rightarrow a^+}\frac{f'(x)}{g'(x)}$存在（可以是有限数或者$\infty$），则成立
+  \[
+\lim\limits_{x \rightarrow a^+}\frac{f(x)}{g(x)}=\lim\limits_{x \rightarrow a^+}\frac{f'(x)}{g'(x)}
+  \]
+
+  \section{证明}
+
+  这里仅对$\lim\limits_{x \rightarrow a^+}\frac{f'(x)}{g'(x)}=A$为有限数时来证明，当$A$为无穷大时,证明过程是类似的,
+  先证明$ \lim\limits_{x \rightarrow a^{+}}g(x) =\lim\limits_{x\to a^{+}}f(x)=0$的情况:
+  \\$\quad$由于函数在$x=a$处的值与$x \rightarrow a^+$时的极限无关，因此可以补充定义
+  \[
+  f(a)=g(a)=0
+  \]
+  使得$f(x)$和$g(x)$在$[a,a+d]$上连续，这样，经补充定义后的函数$f(x)$和$g(x)$在$[a,a+d]$上满足$Cauchy$中值定理的条件，因此对于任意$x\in (a,a+d)$，存在$\xi \in (a,a+d)$，满足
+  \[
+  \frac{f(x)}{g(x)}=\frac{f(x)-f(a)}{g(x)-g(a)}=\frac{f'(\xi)}{g'(\xi)}
+  \]
+  当$x \rightarrow a^+$时显然有$\xi \rightarrow a^+$，由于$\lim\limits_{x \rightarrow a^+} \frac{f'(x)}{g'(x)}$存在，两端令$x \rightarrow a^+$，即有
+  \[
+  \lim\limits_{x \rightarrow a^+}\frac{f(x)}{g(x)}= \lim\limits_{x \rightarrow a^+}\frac{f\xi)}{g(\xi)}= \lim\limits_{x \rightarrow a^+}\frac{f'(x)}{g'(x)}
+  \]
+
+  下面证明$\lim\limits_{x \rightarrow a^+}g(x)=\infty$的情况
+  记$x_0$是$(a,a+d]$中任意一个固定点，则当$x \neq x_0$，$\frac{f(x)}{g(x)}$可以改写为
+  \[
+ \frac{f(x)}{g(x)}=\frac{f(x)-f(x_0)}{g(x)}+\frac{f(x)}{g(x_0 }=\frac{g(x)-g(x_0)}{g(x)} \cdot \frac{f(x)-f(x_0)}{g(x)-g(x_0)}+\frac{f(x_0)}{g(x_0)}  
+ \]
+ \[
+ =[1-\frac{g(x_0)}{g(x)}] \frac{f(x)-f(x_0)}{g(x)-g(x_0)}+\frac{f(x_0)}{g(x_0)}
+ \]
+ 于是，
+ \[
+ |\frac{f(x)}{g(x)}-A|=|[1-\frac{g(x_0)}{g(x)}] \frac{f(x)-f(x_0)}{g(x)-g(x_0)}+\frac{f(x_0)}{g(x_0)}-A|
+ \]
+ \[
+ \leq |[1-\frac{g(x_0)}{g(x)}]|\cdot| \frac{f(x)-f(x_0)}{g(x)-g(x_0)}-A|+|\frac{f(x_0)-Ag(x_0)}{g(x)}|
+ \]
+ 因为$\lim\limits_{x \to a^+}\frac{f'(x)}{g'(x)}=A$,所以对于任意$\epsilon \textgreater 0$，存在$\rho \textgreater 0$，当$0\textless x-a \textless \rho$时
+ \[
+ |\frac{f'(x)}{g'(x)}-A|\textless \epsilon
+ \]
+ 取$x_0=a+\rho$,由$Cauchy$中值定理，对于任意$x \in (a,x_0)$,存在$\xi\in(x,x_0)\subset(a,a+\rho) $满足
+ \[
+ \frac{f(x)-f(x_0)}{g(x)-g(x_0)}=\frac{f'(\xi)}{g'(\xi)}
+ \]
+ 于是得到
+ \[
+| \frac{f(x)-f(x_0)}{g(x)-g(x_0)}-A|=|\frac{f'(\xi)}{g'(\xi)}-A|\textless \epsilon
+ \]
+
+ 又因为$\lim\limits_{x \to a^+}g(x)=\infty$,所以可以找到正数$\delta \textless \rho$，当$0\textless x-a\textless \delta$时，成立
+ \[
+|[1-\frac{g(x_0)}{g(x)}]|\textless 2,+\frac{f(x_0)-Ag(x_0)}{g(x)}|\textless \epsilon
+ \]
+
+ 综上所述，即知对于任意的$\epsilon \textgreater 0$，存在$\delta \textgreater 0$，当$0 \textless x-a \textless \delta$时
+ \[
+ |\frac{f(x)}{g(x)}-A|\textless |1-\frac{g(x_0)}{g(x)}| \cdot | \frac{f(x)-f(x_0)}{g(x)-g(x_0)}-A|+|\frac{f(x_0)-Ag(x_0)}{g(x)}|\textless 2\epsilon+\epsilon=3\epsilon
+ \]
+
+ 由定义即得
+ \[
+\lim\limits_{x \to a^+}\frac{f(x)}{g(x}=A=\lim\limits_{x \to a^+}\frac{f'(x)}{g'(x)}
+ \]
+   证毕！
+
+ 
+
+
+\end{document}

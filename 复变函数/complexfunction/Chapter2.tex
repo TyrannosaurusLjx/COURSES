@@ -1,0 +1,209 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{hyperref,amsmath, extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{Chapter2-Cauchy Theorem and it's application}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{proposition}[1][proposition-name]{\par\noindent \textbf{proposition #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}{\par\textit{ }}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+\section*{Goursat's theorem}
+
+\theorem[1.1]{if $\Omega$ is an open set in C and $ T \subset\Omega$ a triangle whose interior is also contained in $\Omega$ .then
+\[
+\int_T f(z)dz = 0    
+\] 
+whenever f is holomorphic in $\Omega$}
+
+\corollary[1.2]{If f is holomorphic in a open set $\Omega$ that contains a rectangle R and its interior .then
+\[
+\int_R f(z)dz = 0   
+\]
+}
+
+\section*{Local existence of primitives and Cauchy's Theorem in a disc}
+
+\theorem[2.1]{A holomorphic function f in an open disc has a primitive in that disc}
+
+\theorem[2.2 Cauchy's theorem for a disc]{if f is holomorphic in a disc then
+\[
+  \int_\gamma f(z)dz=0  
+\]
+for any closed curve $\gamma$ in that disc}
+
+\corollary[2.3]{suppose f is holomorphic in an open set containing the circle C and its interior ,then
+\[
+\int_C f(z)dz = 0   
+\]}
+
+\section*{Evaluation of some integrals}
+there are some common toy contours needed to be discuss
+
+\section*{Cauchy's integral formula}
+
+\theorem[4.1]{suppose f is holomorphic in an open set that contains the closure of a disc D,if Cdenotes the boundary of D with the positive orientation, then
+\[
+  f(z) = \frac{1}{2\pi i}\oint _C\frac{f(\zeta)}{\zeta-z}d\zeta 
+\]
+for any point $z\in D$}
+
+\note{$f$ is holomorphic on $\overline{D}!$, $z\in D!$: To understand it, let's look at the proof (p46). 
+In the proof, we calculate the integral $F(\zeta) = \frac{f(\zeta)}{\zeta-z}$ on the disc $D$ and divide it into two parts. 
+The first part is $\int_{F_{\delta,\epsilon}}F(\zeta)\,d\zeta = 0$ since $F_{\delta,\epsilon}\subset\Omega$ and $F$ is holomorphic on $\Omega$ (except at $z$). 
+The second part is $\int_{C_\epsilon}F(\zeta)\,d\zeta$, which evaluates to $-2\pi i f(z)$ since $F$ is not holomorphic at $z$. 
+We need to calculate this part because $C = F_{\delta,\epsilon}\cup C_\epsilon$, where $\delta,\epsilon\to 0$. 
+Therefore, we have $0 = \oint_C\frac{f(\zeta)}{\zeta-z}\,d\zeta - 2\pi i f(z)$, which is what we need to prove.\\
+In fact, the circle $C$ can be replaced by any closed curve $\gamma$ that contains $z$ in $\Omega$. 
+Also, if we choose $z\in\Omega-\overline{D}$, then the integral will be zero since $F$ is holomorphic on those points. 
+That's why we choose $z$ in $D$; otherwise, the conclusion is trivial.}
+
+\theorem[4.2]{If f is hol on an open set $\Omega$ , then f has infinitely many complex dirivatives in $\Omega$ , and for any circle $C\subset\Omega$ whose interior is also in $\omega$, we have:
+\[
+  f^n(z) = \frac{n!}{2\pi i}\int_C\frac{f(\zeta)}{(\zeta-z)^{n+1}}d\zeta
+\]
+for all z in the interior of C}
+
+\corollary[4.3 Cauchy's inequalities]{If f is hol in an open set that contains the closure of disc of D centered at z of radius of R, then
+\[
+  |f^n(z)|\leq\frac{n!||f||_C}{R^n}
+\]
+whenever $||f||_C=\sup_{z\in C}|f(z)|$ denotes the supremum of $|f|$ on the boundary circle C}
+
+\theorem[4.4]{Suppose $f$ is holomorphic in an open set $\Omega$. If $D$ is a disc centered at $z_0$ and whose closure is contained in $\Omega$, then $f$ has a power series expansion at $z_0$
+\[
+f(z)=\sum_{n=0}^{\infty} a_n\left(z-z_0\right)^n
+\]
+for all $z \in D$, and the coefficients are given by
+\[
+a_n=\frac{f^{(n)}\left(z_0\right)}{n !} \quad \text { for all } n \geq 0 .
+\]}
+
+\note{In fact there are not many restiction on D}
+
+\theorem[4.5 Lilouvile's theorem]{if f is entire and bounded, then f is constant}
+
+\corollary[4.6]{Every non-constant polynomial $P(z) = a_nz^n+\cdots+a_0$ with the complex coefficients has a root in C}
+
+\corollary[4.7]{Every polynomial $P(z)=a_n z^n+\cdots+a_0$ of degree $n \geq$ 1 has precisely $n$ roots in $\mathbb{C}$. If these roots are denoted by $w_1, \ldots, w_n$, then $P$ can be factored as
+\[
+P(z)=a_n\left(z-w_1\right)\left(z-w_2\right) \cdots\left(z-w_n\right)
+\]}
+
+\theorem[4.8]{Suppose f is a holomorphic function in a region Ω that
+vanishes on a sequence of distinct points with a limit point in Ω. Then
+f is identically 0}
+
+\note{it's easy to understsand since that a function f is hol on Ω means f is continuous in Ω , then using the continuity to get the conclusion. 
+In the proof we just need to consider the neighborhood of the point}
+
+\corollary[4.9]{Suppose f and g are holomorphic in a region Ω and
+f(z) = g(z) for all z in some non-empty open subset of Ω (or more generally for z in some sequence of distinct points with limit point in Ω).
+Then f(z) = g(z) throughout Ω}
+
+\section*{Futher application}
+
+\theorem[5.1 Morera's theorem]{Suppose f is a continuous function in the open disc D
+such that for any triangle T contained in D
+\[
+  \int_T f(z)dz=0
+\]
+then f is holomorphic}
+
+\note{In fact if true, for any $\gamma$ the integration is zero, that the inverse proposition of Cauchy' theorem}
+
+\theorem[5.2]{If $\{f_n\}_{n=1}^\infty$ is a sequence of holomorphic functions that
+converges uniformly to a function f in every compact subset of Ω, then
+f is holomorphic in Ω.}
+
+\note{the key point is that the uniform-convergence in a compact set make the integral and limit can be exchanged for order:let's look at the impact of different convergent property(suppose f>0,$f_n\nearrow$ $f_n$ converge to f in $D\overset{closed}{\subset}\Omega$):that's 
+  \[
+    \forall\epsilon>0,\forall z\in\Omega,\exists N_z>0,\forall n\geq N_z:\int_T (f(z)-f_n(z))dz<\epsilon;here:T\overset{triangle}{\subset}\Omega
+  \] then:
+  \[
+    \int_T (f(z)-f_{N_z}(z))dz<\int_T\epsilon dz
+  \]there is nomore information we can get unless $f_n\Rightarrow f$,then $\exists N,\forall z\in D ,N_z<N$
+  then\[
+    \lim\limits_{n\to\infty}\int_T (f(z)-f_n(z))dz\leq\int_T\epsilon dz<\epsilon_0
+  \]
+  that's what we need(According to the arbitrariness of T and theorem 5.1 : f is hol)
+  }
+
+\theorem[5.3]{Under the hypotheses of the previous theorem, the sequence of derivatives $\{f_n\}$ converges uniformly to f on every compact subset of Ω.}
+
+\note{this two theorem show that if every $f_n$ is hol on Ω ,and the sum of these functions converge uniformly to F on Ω.then this series defines a holomorphic function F on Ω,which is $F(z) = \sum\limits_{n=1}^\infty f_n(z)$}
+
+\theorem[5.4]{Let F(z, s) be defined for $(z, s) \in \Omega \times [0, 1]$ where Ω is an
+open set in C. Suppose F satisfies the following properties:\\
+  (i):F(z, s) is holomorphic in z for each s.
+  (ii):F is continuous on $\Omega\times [0, 1]$.\\
+  Then the function f defined on Ω by:
+  \[
+  f(z) = \int_0^1 F(z,s)dz
+  \]
+  is holomorphic}
+
+\note{In fact, the properties(ii) means to show F(z,s) is continuous about s}
+
+\note{proof of 5.4:In the proof we make a function sequence $f_n(z) = \frac{1}{n}\sum\limits_{k=1}^nF(z,k/n)$,then $f_n\Rightarrow f,on\;D\overset{compact}{\subset}\Omega$,then use Thm5.2 ,f is hol\\
+\color{blue}{so if we need to proof a function f is hol on a set Ω,we can make a function sequence $f_n$ which converges uniformly to f on any compact subset of Ω,then we can say f is hol on Ω}}
+
+\theorem[5.5 Symmetry principle]{If $f^+$ and $f^+$ are holomorphic functions in $\Omega^+$ and $\Omega^- $respectively, that extend continuously to I and
+\[
+  f^+(x) = f^+(x),\forall x\in I
+\]
+then the function f defined on Ω by
+\[
+f(z)=\begin{cases}
+  f^+(z) & z\in\Omega^+\\
+  f^-(z) & z\in\Omega^-\\
+  f^+(z)=f^-(z) & z\in I
+\end{cases}
+\]is holomorphic on all of $\Omega$}
+
+\theorem[5.6 Schwarz reflection principle]{Suppose that f is a holomorphic function in $\Omega^+$ that extends continuously to I and such that f is real-valued on I. 
+Then there exists a function F holomorphic in all of Ω such that F = f on $\Omega^+$.}
+
+\proof[Schwarz reflection principle]{let $F(z)=\overline{f(\overline{z})}\;on\; \Omega^-$ , which is holomorphic,then use the Symmetry principle}
+
+\theorem[5.7]{Any function holomorphic in a neighborhood of a compact set K can be approximated uniformly on K by rational functions whose
+singularities are in $K^c$\\
+If $K^c$ is connected, any function holomorphic in a neighborhood of K can be approximated uniformly on K by polynomials}
+
+\href{https://en.wikipedia.org/wiki/Runge%27s_theorem}{wikipedia about Runge's approximation theorem}
+
+\lemma[5.8]{Suppose $f$ is holomorphic in an open set $\Omega$, and $K \subset \Omega$ is compact. Then, there exists finitely many segments $\gamma_1, \ldots, \gamma_N$ in $\Omega-K$ such that
+$$
+f(z)=\sum_{n=1}^N \frac{1}{2 \pi i} \int_{\gamma_n} \frac{f(\zeta)}{\zeta-z} d \zeta \quad \text { for all } z \in K
+$$}
+
+\lemma[5.9]{For any line segment $\gamma$ entirely contained in $\Omega-K$, there exists a sequence of rational functions with singularities on $\gamma$ that approximate 
+the integral $\int_\gamma f(\zeta) /(\zeta-z) d \zeta$ uniformly on $K$.}
+
+\lemma[5.10]{If $K^c$ is connected and $z_0\notin K$, then the function $1/(z - z_0)$ can be approximated uniformly on K by polynomials.}
+
+\note{if $K\overset{compact}{\subset}\Omega$,there are rational function which can be used to approximated uniformly.if $K^c$ is connected,then the rational function can be polynomials}
+
+\note{In fact I didn't understand the proof clearly...}
+
+
+
+
+
+
+\end{document}

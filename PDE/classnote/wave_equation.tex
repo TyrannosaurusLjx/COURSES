@@ -1,0 +1,66 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{PDE chapter2}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+依赖区域，决定区域，影响区域实际上都是扰动以有限速度传播的体现
+
+初值不为零的自由振动用达朗贝尔公式求解即可
+$$\begin{cases}
+u_{tt}-c^2u_{xx}=0 \\
+u(0,x)=\phi(x),u_t(0,x)=\psi(x)
+\end{cases}$$
+$$u(t,x)=\frac{1}{2}(\phi(x-ct)+\phi(x+ct))+\frac{1}{2c}\int_{x-ct}^{x+ct}\psi(\xi)d\xi $$
+
+初值为零的受迫振动转化成初值不为零的自由振动
+$$\begin{cases}
+u_{tt}-c^2u_{xx}=f(t,x)\\
+u(0,x)=0,u_t(0,x)=0
+\end{cases}$$
+$$u(t,x)=\frac{1}{2c}\int_0^t\int_{x-c(t-\tau)}^{x+c(t-\tau)}f(\tau,\xi)d\xi d\tau $$
+
+初值不为零的受迫振动利用叠加原理转化成以上两种方程分别求解
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

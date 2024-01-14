@@ -1,0 +1,2 @@
+report:
+	xelatex ljx.tex

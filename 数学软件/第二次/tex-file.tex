@@ -1,0 +1,65 @@
+\documentclass{ctexart}
+\usepackage{color}
+
+\begin{document}
+\large\centerline{尝试编写shell脚本}
+\quad 在学习shell编程之前,我学习过一学期的Python,所以在学习shell的过程中,我有意识的将它和Python中的内容对应.
+\par
+第一个shell程序名称test.txt,内容是:\par 
+\verb|#!/bin/bash|\par
+\verb|saluatation = "Hello"|\par
+\verb|exit 0|\par
+但是我发现运行出来结果是\par \verb|test.txt: 行 3: saluatation: 未找到命令|\par 原来我在等号的左右两边多打了两个空格,在Python中这是推荐的,但是这里就导致脚本不能正常运行,于是我删掉了空格,并增加了一行代码:\par 
+\verb|#!/bin/bash|\par
+\verb|saluatation="Hello"|\par
+\verb|echo 'The program $0 is now running'|\par 
+\verb|exit 0|\par 
+这里的\$0表示命令行本身,也就是应该输出\par 
+The program test.txt is now running \par
+但是输出结果却是\par The program \$0 is now running\par 
+
+\textcolor{red}{如果把一个\$变量放在双引号中,程序执行到这里就会把变量替换成它的值,但是如果在单引号中,就不会发生替换现象}\par 
+
+然后我修正了引号为双引号,得到:\par 
+\verb|Hello|\par \verb|The program test.txt is now running|\par 
+然后我学习了其他\$变量的用法,完成了第一个程序
+\par
+\verb|\#! /bin/bash|\par 
+\verb|saluatation = "Hello"|\par 
+\verb|echo "The program $0 is now running"|\par 
+\verb|echo "The second paramater was $2"|\par 
+\verb|echo "The first paramater was $1"|\par
+\verb|echo "The paramater list was $*|\par 
+\verb|echo "The user's home directory is $HOME"|\par 
+\verb|echo "please enter a new greeting"|\par 
+\verb|read saluatation|\par\par 
+\verb|echo $saluatation|\par 
+\verb|echo "The script is now complete"|\par
+\verb|exit 0|
+\paragraph{这里的read相当于input,echo相当于print}
+运行程序并先后输入first,second和over\par
+得到:\par
+\verb|Hello|\par 
+\verb|The program test.txt is now running|\par 
+\verb|The second paramater was second|\par 
+\verb|The first paramater was first|\par
+\verb|The paramater list was first second*|\par 
+\verb|The user's home directory is /home/ljx|\par 
+\verb|please enter a new greeting|\par 
+\verb|over|\par 
+\verb|over|\par 
+\verb|The script is now complete|\par
+继续学习后,我写了一段求数列{$1^2,2^2,\cdots ,n^2,\cdots$}前n项和的shell程序,名为test2.txt
+\paragraph{#!/bin/bash
+\\echo "Plesse enter a num"
+\\read num
+\\sum=0
+\\for i in `seq 1 \$num`
+\\do
+\\        sum=\$[\$i*\$i+\$sum]
+\\done
+\\echo \$sum
+\\exit 0}
+\paragraph{经过测试,程序正确}
+
+\end{document}

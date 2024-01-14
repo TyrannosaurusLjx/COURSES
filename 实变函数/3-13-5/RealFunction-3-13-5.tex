@@ -1,0 +1,122 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{$R^n$中的拓扑}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+{\say{这里的$R^n$是n维欧式空间,在其中已经定义了范数和距离}
+}\vspace*{15pt}
+
+\Def[邻域]{$x\in R^n,\epsilon>0;V(x,\epsilon)=\{y\in R^n|d(x,y)<\epsilon\}$称为x的$\epsilon$邻域\\
+.$\qquad \text{E称为x的邻域}\iff \exists\epsilon>0\;s.t.V(x,\epsilon)\subset E$} 
+
+\theorem[定理1.5.1]{$V(x,\epsilon)$是其每一点的邻域}\vspace*{15pt}
+
+
+\Def[$R^n\text{中的开集和闭集}$]{$G\subset R^n$是其中每一点的邻域,则称G是开集;补集是开集的集合称为闭集}
+
+\theorem[定理1.5.2]{1.全空间和空集定义为既开又闭集 2.开集的有限交和任意并是开集 3.闭集的任意交和有限并是开集}
+
+\theorem[定理1.5.4]{$F\subset R^n\text{是闭集}\iff F\text{中的任何点列}\{x_n\}\text{如果收敛到}x,\text{那么}x\in F$
+:也就是说闭集中的点列如果收敛,那么一定收敛到它自身中}
+\begin{proof}[定理1.5.4]
+    充分性:$\text{假定F是闭集,}\{x_n\}_{n=1}^\infty \text{是F中的数列,并且收敛到x,如果}x\notin F,i.e.x\in F^c.
+    \text{从而存在x的足够小的邻域包含在}F^c$中,但是由于数列是收敛的,当n充分大的时候,数列中的点将全部属于这个邻域,
+    从而这些点在F的补集中,但是数列的点在F中取,这就产生了矛盾\\
+    .必要性:假定任意F中的数列收敛到$x\in F$,反设$F^c$不是开的,则$\exists x_0\in F^c,s.t.\forall\epsilon>0,V(x_0,\epsilon)$
+    不是$x_0$的邻域,按照$\epsilon=\frac{1}{k},k\in N$,取$x_k\in V(x_0,\frac{1}{k})\cap F$,就构成了F中的一个数列,
+    但是这个数列收敛到了$F^c$中,这与条件相悖,从而证明了结论.
+\end{proof}
+
+\Def[$R$中开集]{显然R中开区间是R中开集\\
+.$\qquad \text{若}G\subset R\text{是开集},(a,b)\text{是R中开区间,若:}(a,b)\subset G\text{但是}a,b\notin G.
+\text{则(a,b)称为G的构成区间}$其中a,b可以是无穷}
+
+{\center{
+\lemma[1.5.1]{
+    G是R中开集,那么G中每一个点都属于G的一个构成区间\\
+    ${Proof:}\forall x\in G,\exists\epsilon>0,s.t.o(x,\epsilon)\subset G,let:a=\inf\{a'<x|(a',x)\subset G\},b=\sup\{b'>x|(x,b')\subset G\}$
+    这里a,b都不属于G,否则a,b是内点,从而不是确界 
+}}}
+
+\theorem[定理1.5.5]{R中开集G至多是可数个两两不交的开区间的并\\
+.      由引理1.5.1,G是G的构成区间的并,构成区间是不交的,这样就是一族开区间的并,从而至多是可数的}\vspace*{15pt}
+
+\Def[$R^n$中集的内点,内核,附着点和闭包]{
+    E是x的邻域,则x称为E的内点;E的内点的全体称为E的内核记为$E^o$;若x的任一邻域与E交非空,称x是E的附着点(孤立点也是附着点);E的附着点全体称为E的闭包,记为$\overline{E}$
+}
+
+\theorem[定理1.5.6]{内核是包含于集的最大开集,闭包是包含集的最小闭集(反证法)}
+\note[1.5.6]{集是开集等价于集和内核相等,集是闭集等价于集和闭包相等}
+
+\theorem[$x\in\overline{E}$]{存在$E$中点列使得其收敛到$x$}
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+
+
+
+%\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

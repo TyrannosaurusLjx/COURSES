@@ -1,0 +1,120 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{hyperref,amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{Chapter1}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{proposition}[1][proposition-name]{\par\noindent \textbf{proposition #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}{\par\textit{ }}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+
+\section*{Complex number and complex plane}
+
+\theorem[1.1]{C, the complex numbers is complete}
+
+\note{a set is complete is to say $X\overset{closed}{\subset} Y$ , $(Y,\rho)$ is Metric space .for any point $x\in X$,x is limit point}
+
+\theorem[1.2]{The set $\Omega\subset C$ is compact iff every sequence $\{z_n\}\subset \Omega$ has a subsequence that converges to a point $z_0$ in $\Omega$}
+
+\note{the most important is $z_0 \in \Omega$, for example for $\Omega = (0,1]\times [0,1],z_n = 1/n+i/2$, it's obviously $z_n\to i/2$ but $i/2\notin\Omega$}
+
+\theorem[1.3]{A set $\Omega$ is compact iff every open covering has a finite subcovering that covers $\Omega$ }
+
+\proposition[1.4]{if $\Omega_1\supset\Omega_2\supset\cdots\supset\Omega_n\supset\cdots$ is a sequence of non-empty compact set in C 
+    with the property that \[diam(\Omega_n)\to 0\;as\;n\to\infty \]
+    then there exists a unique point $\omega\in C$ s.t. $\omega\in\Omega_n$ for all n 
+    }
+
+\section*{Function of the complex plane}
+
+\theorem[2.1]{A continuous function f on a compace set $\Omega$ is abounded and attains a maximun and minimun in $\Omega$}
+
+\note{Holomophic Function:f hol at z iff $\lim\limits_{h\to 0}\frac{f(z+h)-f(z)}{h}$ converges to a limit\\
+    f is said to be hol on $\Omega$ iff f hol at every point of it\\
+    for example $f(z) = \frac{1}{z}$ isn't hol at (0,0);any polynomial hol in C,$f(z)=\overline{z}$ isn't hol since $\lim\limits_{h\to 0}\frac{f(z+h)-f(z)}{h}=\frac{\overline
+    h}{h}$ has no limit}
+
+\proposition[2.2]{$f,g$ hol on $\Omega$:(1):f+g hol, (f+g)'=f'+g' ; (2):fg hol, (fg)'=f'g+g'f ; (3):(f/g) hol where g novanish $(f/g)' = (f'g-g'f)/g^2$ and (4): $\Omega\overset{f}{\rightarrow}U\overset{g}{\rightarrow}C,g(f(z))$ hol on $\Omega$}
+
+\proposition[2.3]{if f is hol at $z_0$ then :$\frac{\partial f}{\partial \overline{z}}f(z_0) = 0,f'(z_0)=\frac{\partial f}{\partial z}(z_0)=2\frac{\partial u}{\partial z}(z_0)$}
+
+\proposition[2.4]{suppose f=u+iv is a complex-value function defined on $\Omega$ ,if u,v sre continuesly differentiable on $\Omega$ and satisify the Cauchy-Riemann Equations on $\Omega$, then f is hol on $\Omega$ and $f'(z) = \frac{\partial f}{\partial z}$}
+
+\theorem[2.5]{Given a power seties $\sum\limits_{n=0}^{\infty} a_nz^n$ there exists $0\leq R\leq \infty$ s.t.\\
+    (1):if |z|<R,the series converges absolutely\\
+    (2):if |z|>R,the series diverges\\
+    while |z|=R the situation need to discuss 
+}
+
+\note{$\frac{1}{R} = \limsup |a_n|^{\frac{1}{n}}$,we call R "radius of convergence",|z|<R "the disc of convergence"}
+
+\theorem[2.6]{the power series $f(z) = \sum\limits_{n=0}^{\infty} a_nz^n$ defines a hol function in it's disc of convergence.the derivative of f is also a power serier for f that's
+\[f'(z) = \sum\limits_{n=0}^\infty na_nz^{n-1}\]
+moverover f' has the same radius of convergence as f}
+
+\corollary[2.7]{A power series is infinitely complex differentiable in it's disc of convergence and the higher derivatives are also seties obtained by termwise differentiation}
+
+\note{f is Holomophic iff f is Analytic iff f has a power series expansion}
+
+\section*{integration along curves}
+
+\proposition[3.1]{integration of continuous functions over cuvers satisfies the followling properties:
+(i) It is linear, that is, if $\alpha, \beta \in \mathbb{C}$, then
+$$
+\int_\gamma(\alpha f(z)+\beta g(z)) d z=\alpha \int_\gamma f(z) d z+\beta \int_\gamma g(z) d z
+$$
+(ii) If $\gamma^{-}$is $\gamma$ with the reverse orientation, then
+$$
+\int_\gamma f(z) d z=-\int_{\gamma^{-}} f(z) d z
+$$
+(iii) One has the inequality
+$$
+\left|\int_\gamma f(z) d z\right| \leq \sup _{z \in \gamma}|f(z)| \cdot \text { length }(\gamma)
+$$
+}
+
+\theorem[3.2]{if a function f has a primitive F in $\Omega$ and $\gamma$ is a curve in it that begins $w_1$ and ends $w_2$ then:
+\[\int_\gamma f(z)dz = F(w_2)-F(w_1)\]
+it's same like Newton-Leibniz Formula}
+
+\corollary[3.3]{ If $\gamma$ is a closed curve in an open set $\Omega$, and $f$ is continuous and has a primitive in $\Omega$, then
+$$
+\int_\gamma f(z) d z=0 .
+$$
+This is immediate since the end-points of a closed curve coincide.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

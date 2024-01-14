@@ -1,0 +1,15 @@
+#!/bin/bash
+
+salutation="Hello"
+echo $salutation
+echo "The program $0 is running"
+echo "The second paramater was $2"
+echo "The first paramater was $1"
+echo "The paramater list was $*"
+echo "The user's home directory is $HOME"
+echo "Please enter a new greeting"
+read salutation
+
+echo $salutation
+echo "The script is now complete"
+exit 0

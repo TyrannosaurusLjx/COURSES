@@ -1,0 +1,125 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{基数比较}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+\section*{连续统势}
+\begin{center}
+    一.n元数列全体(A)具有连续统势:
+    $B_{n,m}=\{n\text{元数列}\{a_k\},k\geq m:a_k=0\}\text{.则}\bigcup\limits_{n=1}^\infty B_{n,m}\text{为n元数列全体}$\\
+\end{center}
+\begin{proof}[n元数列全体具有连续统势]{证明无限n元数列具有连续统势}\\
+    1.有限n元数列全体可数:有限集的可数并是可数集\\
+    2.往证无限n元数列$\sim (0,1]$\\
+    \center{$\forall x\in (0,1],\exists !k_1.s.t.\frac{k_1-1}{n}<x \leqslant \frac{k_1}{n}$\\
+    取$a_1=k_1-1$,又有唯一的$k_2,s.t.\frac{k_1-1}{n}+\frac{k_2-1}{n^2}<x \leqslant \frac{k_1-1}{n}+\frac{k_2}{n^2}$\\
+    取$a_2=k_2-1$,以此类推,有:$\sum_{i=1}^m \frac{k_i-1}{n^i}<x \leqslant \sum_{i=1}^{m-1} \frac{k_i-1}{n^i}+\frac{k_m}{n^m}$\\
+    令m趋近于无穷就有$x=\sum_{i=1}^{\infty} \frac{a_i}{n^i}$\\
+    从而我们得到一个映射$f:(0,1]\to A:f(x)=\left\{a_1, a_2, \cdots, a_i, \cdots\right\} .$且f是双射}
+\end{proof}
+
+
+\begin{center}
+    二.可数集的子集全体有连续统势\\(只需证N即可)
+\end{center}
+\begin{proof}[$N\sim\mathcal{P}(N)$]
+    $f:\mathcal{P}(N);\to \text{二元数列全体};f(A)=\left\{a_1, a_2, \cdots\right\}, \quad f(\varnothing)=\{0,0, \cdots\}:
+    and\;a_n= \begin{cases}1, & n \in A \\ 0, & n \in \mathbf{N}-A\end{cases}$是一个双射
+\end{proof}
+
+
+\begin{center}
+    三.至多可数个有连续统势的集的直积有连续统势\\
+    也是证明其与二元数列全体等价
+\end{center}
+
+\Def[推论]{1.$\text{平面}R^2\text{,和空间}R^3\text{有连续统势,一般的}R^n\sim R^\infty\text{有连续统势}$\\
+2.实数列全体有连续统势}
+
+\section*{基数比较}
+\theorem[$Bernstein$定理]{
+    1.对任何集$A, \overline{\overline{A}} \leqslant \overline{\overline{A}}$\\
+    2.若$\overline{\overline{A}} \leqslant \overline{\overline{B}},\overline{\overline{B}} \leqslant \overline{C}\text{则} 
+    \overline{\overline{A}} \leqslant \overline{\overline{C}}$\\
+    3.若$\overline{\overline{A}} \leqslant \overline{\overline{B}},\overline{\overline{B}} \leqslant \overline{\overline{A}}\text{则}
+    \overline{\overline{A}} = \overline{\overline{B}}$
+    }
+\theorem[1.1]{$A_0\supset A_1\supset A_2,and\;A_0 \sim A_2$ 则 $A_0\sim A_1$}
+
+\Def[基数大小关系]{$\overline{\overline{A}} \leqslant \overline{\overline{B}}\iff \text{存在从A到B的单射}\iff \exists B_1\subset B\;s.t.\;A\sim B_1$\\
+.$\qquad$(严格小则集合之间没有双射)}
+
+\example[R上的连续函数有连续统势]{R上的连续函数有连续统势}
+
+\theorem[1.4.12]{不存在基数最大的集:$\mu < 2^\mu$}
+
+\proof[1.4.12]{
+    先证明$\mu\leq 2^\mu$,我们发现$\phi: A\to \mathcal{P}(A);\phi(x)=\{x\}$是单射,从而A的基数小于等于$\mathcal{P}(A)$\\
+    再证明$\mu\neq 2^\mu$,反设存在相等,则存在一个A到其幂集的双射$f:A\to \mathcal{P}(A);x\to f(x)\in\mathcal{P}(A)$.作集合$A^*\{x\in A|x\notin f(x)\}\subset A$
+    从而$A^*\in \mathcal{P}(A)\;i.e.\exists x^*\in A,s.t.f(x^*)=A^*$
+    \\$1.x^*\in A^*:$但根据$A^*$定义,矛盾,$2.x^*\notin A^*\Rightarrow x\in A^*$矛盾!
+    综上证毕!
+}
+
+$\chi=2^{\chi_0}$
+
+\Def[连续统假设;CH:]{
+    在阿列夫零和阿列夫之间没有别的基数
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+
+
+
+%\end{figure}
+
+
+
+
+
+
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

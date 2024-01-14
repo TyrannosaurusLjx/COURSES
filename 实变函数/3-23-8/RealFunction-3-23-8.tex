@@ -1,0 +1,74 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{集合与实数集}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+\section*{开覆盖,紧集}
+\theorem[1.5.20]{
+    $R^n$中的紧集是有界闭集
+}
+
+\theorem[1.5.21]{$F\overset{compact}{\subset}R^n,f\in C(F)\Rightarrow (i:)\text{f在F上有界并且能取到最大最小值 }
+\\(ii:)\text{f在F上一致连续 }i.e. \forall\epsilon>0,\exists\delta>0,s.t.\forall d(x,y)<\delta,x,y\in F:|f(x)-f(y)|<\epsilon$}
+{\center{\proof[1.5.21]{
+        1.只需证明连续函数把紧集映射成紧集:$\text{任取}f(F)\text{的开覆盖}H=\bigcup\limits_{\lambda\in\Lambda}H_\lambda\supset f(F);
+        \forall H_\lambda\in H,$\\$\text{考虑其原像}f^{-1}(H_\lambda),\text{则根据连续映射的性质-开集的原像是开集}f^{-1}(H_\lambda)\overset{open}{\subset}R^n;$\\
+        $\Rightarrow \bigcup\limits_{\lambda\in\Lambda}f^{-1}(H_\lambda)\supset F;\text{则这是F的一个开覆盖,但F是紧的,则}\exists\Lambda'\text{是有限集}
+        \bigcup\limits_{\lambda\in\Lambda'}f^{-1}(H_\lambda)\supset F.$\\$\text{再取其像就有}f(F)\subset f(\bigcup\limits_{\lambda\in\Lambda'}f^{-1}(H_\lambda))=
+        \bigcup\limits_{\lambda\in\Lambda'}H_\lambda\;i.e.\text{任意f(F)的开覆盖有有限子覆盖,从而f(F)是紧集}$\\
+        2.首先由f的连续性有$\forall x\in F,\forall\epsilon>0,\exists\delta_x>0\;s.t.\forall y\in O(x,\delta_x):|f(x)-f(y)|<\epsilon;$\\
+        $\text{这里}\bigcup\limits_{x\in F}O(x,\delta_x)\supset F\text{是F的开覆盖,由F的紧致性:}\exists G\subset F\text{是有限集}s.t.\bigcup\limits_{x\in G}O(x,\delta_x)\supset F$\\
+        $let\;\delta=\min\limits_{x\in G}\{\delta_x\},\text{则有:}\forall x,y\in F,d(x,y)<\delta:|f(x)-f(y)|<\epsilon$从而f一致连续
+        }}}\cite{continue-in-compactset-1}\cite{continue-in-compactset-2}
+
+\note[work]{闭集是可数个开集的交,开集是可数个闭集的并}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+
+
+\end{document}

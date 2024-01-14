@@ -1,0 +1,61 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{可测函数用连续函数来逼近}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+
+\begin{document}
+\maketitle
+
+
+\theorem[3.3.1]{$\{f_n\}_{n=1}^\infty $ 定义在$ F\overset{compact}{\subset} R^n,f_n\in C(F)$,若$f_n$一致收敛到$f$,那么$f\in C(F)$}
+\theorem[3.3.2(Egoroff)]{$f$和$f_n$都是测度有限的集合D上的几乎处处有限(有限是说$\forall x,f(x)<\infty$)的可测函数,若$f_n$在D上几乎处处收敛到f,则$\forall\epsilon>0,\exists F\overset{closed}{\subset} D,s.t.\;m(D-F)<\epsilon$且,$f_n$在F上一致收敛到f}
+\note[有限]{有界一定有限,有限不一定有界,例如$f(x) = 1/x,$在(0,1)有限但无界}
+\lemma[3.3.1]{$F\overset{closed}{\subset}R,f\in C(F)$,则f可开拓成$f^*\in C(R)\qie \sup\limits_{x\in R}|f^*(x)|= \sup\limits_{x\in R}|f(x)|$}
+\proof[3.3.1]{$F^c = \bigcup (a_n,b_n)\overset{open}{\subset} R,$开区间不相交。$f^*=\begin{cases} f(x) & \in F\\ \text{线性} & x\in[a_n,b_n]\;bounded \\f(a_n) & x\in[a_n,b_n),b_n=\infty\\f(b_n) & x\in(a_n,b_n] ,a_n = -\infty \end{cases} \Rightarrow f^*\in C(R)$是$f$的开拓}
+\lemma[3.3.2]{设f是可测集D上的简单函数,则$\forall\epsilon>0,\exists f^*\in C(D),s.t.m(\{f\neq f^*\})<\epsilon$}
+\theorem[3.3.3(Lusin)]{设f是可测集D上几乎处处有限的可测函数,则$\forall\epsilon>0,\exists f^*\in C(D),s.t.m(\{f\neq f^*\})<\epsilon \qie \sup\limits_{x\in D}|f^*(x)|\leq \sup\limits_{x\in D}|f+(x)| $}
+\note[推论]{设f是可测集D=[a,b]上几乎处处有限的可测函数,则$\forall\epsilon>0,\exists f^*\in C(D) \\s.t.m(\{f\neq f^*\})<\epsilon \qie \max\limits_{x\in D}|f^*(x)|\leq \sup\limits_{x\in D}|f(x)|$}
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

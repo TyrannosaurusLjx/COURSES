@@ -1,0 +1,188 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{multicol}
+
+\lstdefinestyle{lfonts}{
+  basicstyle   = \footnotesize\ttfamily,
+  stringstyle  = \color{purple},
+  keywordstyle = \color{blue!60!black}\bfseries,
+  commentstyle = \color{olive}\scshape,
+}
+\lstdefinestyle{lnumbers}{
+  numbers     = left,
+  numberstyle = \tiny,
+  numbersep   = 1em,
+  firstnumber = 1,
+  stepnumber  = 1,
+}
+\lstdefinestyle{llayout}{
+  breaklines       = true,
+  tabsize          = 2,
+  columns          = flexible,
+}
+\lstdefinestyle{lgeometry}{
+  xleftmargin      = 20pt,
+  xrightmargin     = 0pt,
+  frame            = tb,
+  framesep         = \fboxsep,
+  framexleftmargin = 20pt,
+}
+\lstdefinestyle{lgeneral}{
+  style = lfonts,
+  style = lnumbers,
+  style = llayout,
+  style = lgeometry,
+}
+\lstdefinestyle{python}{
+    language = {Python},
+    style    = lgeneral,
+}
+
+\title{\huge\textbf{科学计算项目作业三}}
+\author{罗俊勋\\学号:3210101613}
+% \date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+\section*{问题}
+
+编写用选列主元的Gauss消去法求解线性方程组.
+尝试不同的测试例子, 其中可能的一个例子: Hilbert矩阵 $H=\left(h_{i j}\right)$
+$$
+h_{i j}=\frac{1}{i+j-1} .
+$$
+
+\section*{公式和算法}
+列主元素消去法是为控制舍入误差而提出来的一种算法,列主元素消去法计算基本上能控制舍入误差的影响,其基本思想是:在进行第$k(k=1,2,…,n-1)$步消元时,
+从第$k$列的$a_{k,k}$及其以下的各元素中选取绝对值最大的元素,然后通过行变换将它交换到主元素$a_{k,k}$的位置上,再进行消元.
+
+\pagebreak
+
+\section*{程序}
+必要的说明都在注释中
+\begin{multicols}{2}
+
+\begin{lstlisting}[style = python]
+    # 返回n维Hilbert矩阵
+    def Hilbert(n):
+        mat = []
+        for i in range(n):
+            mat.append([0 for item in range(n)])
+    
+        for row in range(n):
+            for line in range(n):
+                mat[row][line] = 1/(row+line+1)
+        return mat
+    # 返回n维Pascal矩阵
+    def pascal_matrix(n):
+        mat = []
+        for i in range(n):
+            mat.append([0 for item in range(n)])
+            
+        for row in range(n):
+            for line in range(n):
+                if line == 0 or row == 0:
+                    mat[row][line] = 1
+                else:
+                    mat[row][line] = mat[row-1][line] + mat[row][line-1]
+        return mat
+    # 普通测试样例 解为[1,2,3]
+    mat = [[1,1,1],[2,-1,3],[1,4,2]]
+    b_lst = [6,9,15]
+    
+    # Gauss求解
+    def Gauss_line(mat, b_lst):
+        n = len(mat)
+        # 构造增广矩阵
+        for i in range(n):
+            mat[i].append(b_lst[i])
+    
+        # n-1次消元
+        for k in range(n-1):
+            # 选取列最大元素的行并交换
+            max_index = max(range(k, n), key=lambda i: abs(mat[i][k]))
+            if max_index != k:
+                mat[k], mat[max_index] = mat[max_index], mat[k]
+    
+            # 消元
+            for i in range(k+1, n):
+                ratio = mat[i][k] / mat[k][k]
+                for j in range(k+1, n+1):
+                    mat[i][j] -= ratio * mat[k][j]
+                mat[i][k] = 0
+    
+        # 求解
+        x = [0] * n
+        for i in range(n-1, -1, -1):
+            s = sum(mat[i][j] * x[j] for j in range(i+1, n))
+            x[i] = (mat[i][n] - s) / mat[i][i]
+        x = [round(item,10) for item in x]
+        return x
+    
+    print(Gauss_line(mat,b_lst))
+    print(Gauss_line(Hilbert(5),[1,2,3,4,5]))
+    print(Gauss_line(pascal_matrix(5),[5,1,1,1,1]))
+\end{lstlisting}
+\end{multicols}  
+
+
+\section*{数据结果}
+应用$Gauss$列主元消去法求得方程组\par
+(1):$AX = b$，其中 $A = \begin{pmatrix}
+    1 & 1 & 1\\
+    2 & -1 & 3\\
+    1 & 4 & 2
+\end{pmatrix} \; b = \begin{pmatrix}
+    6\\9\\15
+\end{pmatrix}$的解为$X = \begin{pmatrix}
+    1\\2\\3
+\end{pmatrix}$
+
+(2):$H_5X = b$其中$H_5$表示五阶的$Hilbert$矩阵,$b = \begin{pmatrix}
+    1\\2\\3\\4\\5
+\end{pmatrix}$的解为$X = \begin{pmatrix}
+    125.0\\-2880.0\\14490.0\\-24640.0\\13230
+\end{pmatrix}$
+
+(3):$P_5X = b$其中$P_5$是五阶的$pascal$矩阵,$b = \begin{pmatrix}
+    5\\1\\1\\1\\1
+\end{pmatrix}$的解为$X = \begin{pmatrix}
+    210\\-40.0\\40.0\\-20.0\\4.0
+\end{pmatrix}$
+
+
+\section*{结论}
+
+选取列主元的高斯消元法$(Gaussian\;elimination\;with\;partial\;pivoting)$是高斯消元法的一种改进方法。
+在标准的高斯消元法中，每一步都选取当前列中的第一个非零元素作为主元进行消元。
+然而，在某些情况下，这种方法可能会导致舍入误差的积累和数值不稳定性的增加。
+而选取列主元可以在每一步中选择当前列中绝对值最大的元素作为主元，从而可以避免这些问题。
+并且其具有:
+
+1.提高数值稳定性：在标准的高斯消元法中，如果某个主元非常接近于零，那么计算时可能会产生大量的舍入误差。而选取列主元可以避免这种情况，因为它始终选择绝对值最大的元素作为主元，从而减少了可能产生误差的情况。
+
+2.减少计算量：在标准的高斯消元法中，每一步都需要找到当前列中第一个非零元素作为主元。这可能需要遍历整个列，特别是当矩阵中存在大量接近于零的元素时。而选取列主元可以在每一步中选择绝对值最大的元素作为主元，这样可以减少遍历的次数，从而减少计算量。
+
+3.改进性能：由于选取列主元可以减少计算量和舍入误差，因此它在实际应用中通常比标准的高斯消元法更快、更准确等优点
+
+在本次计算中,程序平均使用1毫秒的时间就完成了三个方程组的计算,并且得到的结果足够准确.
+
+综上所述，选取列主元的高斯消元法是一种有效的求解线性方程组的方法，可以提高数值稳定性、减少计算量，并改进性能。
+\end{document}

@@ -1,0 +1,119 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,color}
+
+\title{\huge\textbf{引言}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+C语言的标识符由字母数字下划线组成,其中第一个字符必须是字母或者下划线\\
+
+C语言生成的代码质量高,运行效率高\\
+
+C语言源程序文件通过了编译、连接之后,生成一个后缀为.EXE的文件\\
+
+程序与数据一样,共同存储在存储器中。当程序要运行时,当前准备运行的指令从内存被调入CPU中,由CPU处理这条指令.
+这种将程序与数据共同存储的思想就是目前绝大多数计算机采用的(冯诺依曼)模型的存储程序概念.\\
+
+下列(可移植性差)不是C语言所表现出来的不足之处:\\
+数据类型坚持不严格\\表达式容易出现二义性\\可以执行查\\不能自动检查数据越界\\
+
+C语言从main函数开始执行而且main函数可以放在任意位置\\
+
+
+算术运算注意点:1.两个整型数据做除法的时候,结果一定是整数;2.求余运算不能用于实数之间,只能在整数之间用;3.双目运算符的操作数的类型要相同,若否,则系统会自动转换\\
+
+C程序中，用一对大括号{}括起来的多条语句称为复合语句，复合语句在语法上被认为是一条语句。\\
+
+在C语言中，仅由一个分号（;）构成的语句称为空语句，它什么也不做。\\
+
+int i;\\
+double sum;\\
+sum = 0;\\
+for (i = 2; i <= 4; i = i + 2){\\
+    sum = sum + 1/i;\\
+}\\
+这里注意整数除以后还是整数,所以结果是0\\
+
+算术运算>关系运算>赋值运算\\
+
+c语言合法的字符常量用单引号包起来\\
+
+函数的实参和形参都可以是变量、常量和表达式(错的) 实参可以是常量变量和表达式,形参必须是变量\\
+
+c语言参数传递是单向的\\
+
+在C语言中，可以将主调函数放在被调函数的后面，省略函数的声明。\\
+
+不需要函数返回结果时,可以省略return 函数为:void function(variable)\\
+
+全局变量只能定义在程序的最前面，即第一个函数的前面(错的)\\
+
+自动变量如果没有赋值，其值被自动赋为0(错的)\\
+
+$https://blog.csdn.net/weixin_63003502/article/details/127256091$\\
+
+
+局部变量定义在函数内部，其作用域仅限于该函数内部，不会影响全局变量的值。自定义函数可以改变全局变量的值，但不能改变main函数内部定义的局部变量的值。\\
+
+这个C语句的意思是：如果变量number小于0，则flag等于-1，否则flag等于1。这个语句使用了条件运算符，也叫三元运算符，格式为：
+
+condition ? result1 : result2;
+
+其中，condition是一个判断条件，如果成立则返回result1，否则返回result2。在这个C语句中，condition是number < 0，如果成立则返回-1，否则返回1，结果赋值给了变量flag。这个语句经常用于根据条件设置变量的值，代码简洁清晰。\\
+
+!!6的结果是1\\
+
+在C语言中，定义二维数组时，行长度和列长度之间可以用空格、逗号或者没有分隔符来分隔，因为C语言编译器会忽略它们之间的空格和逗号\\
+
+字符串常量就是用一对双引号括起来的字符序列，它有一个结束标志 '\0'\\
+
+如果在定义数组时没有显式地初始化数组元素，则数组元素的值取决于数组所在的存储区域的初始值。对于全局数组和静态数组，如果没有显式初始化，它们的元素会被初始化为 0。对于自动变量和动态分配的数组，如果没有显式初始化，它们的元素的值是未定义的，即不确定的，可能是任意值。\\
+
+
+
+
+非静态数组一旦要初始化就要全部初始化,否则没有初始化的位置的数就是随机的,如果数组是静态数组,那么就算只初始化了一部分,其余没有初始化的部分会自动变成零\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

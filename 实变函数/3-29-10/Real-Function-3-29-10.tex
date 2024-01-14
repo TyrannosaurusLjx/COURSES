@@ -1,0 +1,67 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{Lebesgue可测集与Lebesgue测度}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+集合E可测从而补集可测\\
+任意区间是可测的,且区间的测度就是区间的长度\\
+\lemma[2.3.2]{$\{E_n\}_{n\geq 1}$是一列不交的可测集,则$\bigcup\limits_n E_n\in\Omega$}
+$(\Omega,m)$空间中有限个元的并和交都是可测的;可数个可测集的交和并也是可测集;集合做差也封闭\\
+实轴上的所有开集(闭集)可测\\
+\Def[$G_\delta-$型集]{$G=\bigcap\limits_{n=1}^\infty G_n;G_n\overset{open}{R}$}
+\Def[$F_\sigma-$型集]{$F=\bigcup\limits_{n=1}^\infty F_n;F_n\overset{closed}{R}$}
+
+可测集测度的可数可加性:$\{E_n\}_{n\geq 1}\subset\Omega$且两两不交的时候:$m(\bigcup\limits_{n=1}^\infty E_n)=\sum\limits_{n=1}^\infty m(E_n)$\\
+
+\Def[定理2.3.6]{集合序列满足$1.\{E_n\}$单增或者$2.\{E_n\}$单减并且$m(\{E_n\})<\infty$:就有测度的极限等于极限的测度i.e.$\lim\limits_{n\to\infty}m(E_n)=m(\lim\limits_{n\to\infty}E_n)$}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

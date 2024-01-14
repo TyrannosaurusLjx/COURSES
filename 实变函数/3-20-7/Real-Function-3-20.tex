@@ -1,0 +1,93 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows , amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{集合与实数集}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+\section*{Cantor三分集}
+\Def[性质]{
+    1.Cantor三分集没有内点:$(\overline{C})^o=C^o=\emptyset$\\
+    2.$G=[0,1]-C$是稠子集\\
+    3.C有连续统势
+}
+
+\section*{$R^n$中的长方体}
+\Def[开长方体]{$\prod\limits_{k=1}^n(a_k,b_k)$;同样能定义半开长方体,闭长方体\\
+其中$b_k-a_k$称为边长,$\prod\limits_{k=1}^n(b_k-a_k)$称为体积;当所有的边长都相等的时候,对应的长方体称为方体.}
+
+\theorem[定理1.5.14]{
+    $R^n$中任意开集是可数个两两不相交的半开方体的并
+}
+
+\section*{$R^n$中的连续函数,点和集之间的距离}
+\Def[连续函数f]{如数学分析中的定义:自变量充分靠近的时候,函数值也充分靠近}
+
+\theorem[5.15]{实值函数$f$在$R^n$上连续的充要条件是:$\forall\alpha > 0$集合$A_\alpha=\{x|f(x)>\alpha\},A_\alpha=\{x|f(x)>\alpha\}$是开集}
+{\proof[5.15]{\center{
+    必要性:任取一点$x\in A_\alpha\Rightarrow f(x)-\alpha>0\Rightarrow \exists V(x),s.t.\forall y\in V(x):f(y)-\alpha>0$\\(连续函数的保号性)\\
+    充分性:任取$x\in R^n$.记$A=\{y|f(y)>f(x)-\epsilon\},B=\{y|f(y)<f(x)+\epsilon\}$\\(这里相当于取$\alpha=f(x)\pm\epsilon$):$\to x\in A\cap B\Rightarrow
+    \exists V(x)\subset A\cap B \Rightarrow \forall y\in V(x),f(x)-\epsilon<f(y)<f(x)+\epsilon.\;i.e.\;|f(x)-f(y)|<\epsilon\Rightarrow f\in C$
+}}}
+
+\lemma[1.5.2]{
+    $D\subset R^n;\forall x,y\in R^n:|d(x,D)-d(y,D)|\leq d(x,y)$
+}
+
+\theorem[1.5.16]{$D\subset R^n:d(x,D)\text{是}x\in R^n\text{的一致连续函数}$}
+
+\theorem[1.5.17(Bolzano-Weierstrass)]{$R^n$中的有界点列必有收敛子列}
+
+\theorem[1.5.18]{$F\overset{closed}\subset {R^n},x\in R^n\Rightarrow \exists y\in F\;s.t.\;d(x,y)=d(x,F)\quad \text{于是当}x\notin F:d(x,F)>0$}
+
+\theorem[1.5.19(闭集套定理)]{$\{f_k\}_{k=1}^\infty\text{是}R^n\text{中的一列单调减的非空有界闭集,则}\bigcap\limits_{k=1}^\infty F_k\neq\emptyset$}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

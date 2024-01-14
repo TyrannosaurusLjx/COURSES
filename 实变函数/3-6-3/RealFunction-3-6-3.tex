@@ -1,0 +1,124 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, extarrows , hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{集合与实数集}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newenvironment{shi}[1][shi]{\overline{\overline{#1}}}{\par}
+
+
+\begin{document}
+\maketitle
+
+\Def[集合的划分]{
+    1.有限集$\quad$2.无限集:可数集 \& 不可数集\\
+    所谓可数集就是能和自然数集建立一一对应的集合(换言之其中的元能以一个顺序完全排列),若否的无限集就是不可数集.
+}
+
+\theorem[1.4.3]{
+    \begin{center}
+        1.任一无限集必包含一个可数子集\\
+        2.可数集的任一无限子集是可数集\\
+        3.至多可数个可数集的并是可数的\\
+    \end{center}
+}
+
+\begin{proof}[1.4.3]
+    1.$a_1\in A,a_n\in A-\bigcup\limits_{k=1}^{n-1}a_k$那么$\{a_n\}$就是一个可数子集\\
+    2.$E\subset A\sim N,\left(\begin{aligned} & n_1=\min \left\{n: a_n \in E\right\} 
+        \\ & n_2=\min \left\{n: a_n \in E \text { 且 } n>n_1\right\} \\ & n_3=\min 
+        \left\{n: a_n \in E \text { 且 } n>n_2\right\}\\\cdots\end{aligned}\right)$
+        那么$E=\left\{a_{n_1}, a_{n_2}, \cdots, a_{n_k,} \cdots\right\}$\\就是一个可数集\\
+    3.类似$Cauchy$乘积
+\end{proof}
+
+\note[1.4.3推论]{Q是可数集}
+\\\\
+\theorem[凡无限集必定和其一真子集等价]{证明如下}
+{\center{\lemma[若A是无限集且B至多是可数集,则$A\sim A\cup B$]{
+    不妨设$A\cap B\neq\emptyset$,若否\\取$B_1=B-A$,则$A\cup B=A\cup B_1;$\\
+    由定理1.4.3:A包含一个可数子集,记为E:\\
+    考虑$h:A\to A\cup B=\begin{cases}
+        i:A-E\to A-E\subset A\cup B\\
+        f^{-1}\circ g:E\to E\cup B\;here:E\xlongequal{g}{} N;E\cup B\;B\xlongequal{f}{} N
+    \end{cases}$\\从而$A\sim A\cup B$\\
+}}
+由引理和定理1.4.3:A有一个可数子集E,且$A-E$(无限集)和$A=(A-E)\cup E$等价}
+
+
+
+\example{$\{I_\lambda\}_{\lambda\in\Lambda}$是R中两两不交的开区间族,则其至多可数:
+    $\Lambda$是有限集则显然有限,当其为无限集:$\forall\lambda\in\Lambda,\exists\gamma_\lambda\in Q\cap I_\lambda$ 
+    $f:\{\gamma_\lambda\}_{\lambda\in\Lambda}\subset Q\to \{I_\lambda\}_{\lambda\in\Lambda}\;$
+    $so\;\shi[\{I_\lambda\}]{_{\lambda\in\Lambda}}\leq \shi[Q]{}$    
+}
+\note[证明A最多是可数集]{\color{red}从上面的例题可以看出证明一个集合最多是可数集可以建立一个A到Q的单射来证明}
+
+\Def[连续统势]{闭区间$[0,1]$是不可数集,与其等价的集合我们都称为连续统,称其有连续统势}
+\theorem[连续统势]{任何区间具有连续统势,特别的R是实属连续统}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+% \end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

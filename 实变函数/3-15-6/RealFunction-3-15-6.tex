@@ -1,0 +1,156 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{$R^n$中的拓扑}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+{\center{\Def[$R^n$中的聚点,导集,孤立点和完备集]{\noindent
+    聚点:$E\subset R^n,\forall V(x,\epsilon):(V-\{x\})\cap E\neq\emptyset$则x称为E的聚点.
+    也就是存在E中的数列(充分大的时候不恒等于x)收敛到x;\\
+    聚点全体称为集合E的导集,记为$E'$\\
+    若$x\in E,x\notin E'$称x是E的孤立点\\
+    没有孤立点的闭集称为完备集\\
+}}}\vspace*{15pt}
+
+\example[1]{
+    区间$E=(1,2]$的导集是$E'=[1,2]$且E没有孤立点,任何闭区间是完备集
+}\vspace*{15pt}
+
+\theorem[定理1.5.8]{
+    $x\in E'\iff \exists \{x_k\}\subset R^n,x_k\neq x,x_k\to x$
+}
+\theorem[定理1.5.9]{
+    $\overline{E}=E\cup E'$,并且E是完备集的充要条件是其和其导集相等
+}
+\proof[1.5.9]{
+    1.$E'\subset\overline{E}$因为聚点都是附着点,从而有$E\cup E'\subset \overline{E}$;
+    反过来,任取$x\in\overline{E}$有$\{x_k\}\subset E,x_k\to x$则或者存在$x_j\in\{x_k\},s.t.x_j=x$从而$x\in E$
+    或者$\forall j:x_j\neq x.$但是$x_k\to x$,从而$x\in E'\;i.e.\overline{E}\subset E\cup E'$\\
+    2.必要性是显然的,因为这就意味着E中的每个点都是聚点(没有孤立点)充分性:E完备,则E是闭集,从而有$\overline{E}=E\cup E'=E\Rightarrow E'\subset E$
+    再证$E\subset E'$则E中任意一点x的任意领域都包含E中的点,从而存在一个取自于E中的数列,其极限是x并且每一项都不等于x,从而x是聚点
+}\vspace*{15pt}
+
+
+\note[运算性质]{
+(i) $\left(A^c\right)^{\circ}=(\bar{A})^c$
+(ii) $\overline{A^c}=\left(A^{\circ}\right)^c$;
+(iii) $\overline{A \cup B}=\bar{A} \cup \bar{B}$;\\
+(iv) $\overline{A \cap B} \subset \bar{A} \cap \bar{B}:[A=(0,1);B=(1,2)]$;
+(v) $A^{\circ} \cup B^{\circ} \subset(A \cup B)^{\circ}:[A\cap B=\emptyset]$\\
+(vi) $(A \bigcap B)^{\circ}=A^{\circ} \bigcap B^{\circ}$.
+}\vspace*{15pt}
+
+\Def[疏集和稠集]{
+    疏集:任何非空开集必有非空开子集和其不相交; 稠集:任何非空开集和其交非空
+}
+\example[R]{整数集是实数集的疏集,有理数集是实数集的稠集}\vspace*{15pt}
+
+{\theorem[定理1.5.10]{
+    $E\subset R^n$\\
+    \hspace*{1cm}1.E是疏集$\iff (\overline{E})^o=\emptyset;$\\
+    \hspace*{1cm}2.E是稠集$\overline{E}=R^n$
+}}
+\theorem[$1.5.10'$]{若$A\subset B,\overline{A}\supset B$称A是B的稠子集:例如$A=(0,1)\cap Q,B=(0,1)$}
+\proof[1.5.10]{
+    1.充分性:反设闭包中存在一个内点x,那么存在x的开领域V包含于E的闭包,从而V中的点都是附着点.任取V中另一点y,因为y是E的附着点,从而存在y的开领域和E的交非空,
+    这里我们构造了开集V和他的一个开子集V(y),并且开子集和E的交非空,这和E是疏集矛盾;$\;$
+    必要性:也就是说E的闭包中没有内点,任取$x\in R^n$,在x的任一领域中一定存在y不是E的闭包中的点,从而$y\in (\overline{E})^c$(开集),也就说存在y的领域与E的闭包的交是空集,
+    从而与E交也是空集,这也就是说任一开领域V(x)中有一开领域V(y)与E交空,由于x是任取的,那么E是疏集.\\
+    2.充分性:$\overline{E}\subset R^n$是确定的.任取x是全空间中的点,由于E是稠集,从而x的任一开领域与E有交,这就是附着点的定义,从而$x\in\overline{E}\;$;
+    必要性:任取x是全空间中的点,由于x是附着点,从而x的领域和E交非空.由x的任意性即知E是稠集
+}\vspace*{15pt}
+
+R中的完备集F:首先F是闭的且没有孤立点,从而$F^c$是开的,由定理1.5.5其至多是可数个开集的并,并且这些开集的端点互异,否则F有孤立点了.
+\theorem[定理1.5.11]{
+    R中集F是完备的当且仅当R-F是至多可数个两两不相交的无相同端点的开区间的并
+}\vspace*{15pt}
+
+\clearpage
+{
+\center{
+    构造R中的Cantor完备集\cite{Cantor-set}:\\该集合是通过下述方法构造的:
+    1. 将区间 $[0,1]$ 三等分，去掉中间的开区间 $\left(\frac{1}{3}, \frac{2}{3}\right)$ ，得到两个闭区间的并集
+    $$
+    F_1=\left[0, \frac{1}{3}\right] \cup\left[\frac{2}{3}, 1\right]=F_{1,1} \cup F_{1,2} .
+    $$
+    2. 分别将区间 $F_{1,1}, F_{1,2}$ 再三等分，去掉中间的开区间 $\left(\frac{1}{9}, \frac{2}{9}\right),\left(\frac{7}{9}, \frac{8}{9}\right)$ ，得到四个闭区间的并集
+    $$
+    F_2=\left[0, \frac{1}{9}\right] \cup\left[\frac{2}{9}, \frac{1}{3}\right] \cup\left[\frac{2}{3}, \frac{7}{9}\right] \cup\left[\frac{8}{9}, 1\right]=F_{2,1} \cup F_{2,2} \cup F_{2,3} \cup F_{2,4} .
+    $$
+    3. 这样一直进行下去，到第 $n$ 次分割后得到 $2^n$ 个闭区间的并集
+    $$
+    F_n=\bigcup_{j=1}^{2^n} F_{n, 2^j} .
+    $$
+    取极限就得到 Cantor 三分集
+    $$
+    F=\lim _{n \rightarrow \infty} F_n
+    $$
+    定义$f(x)=\frac{2k-1}{2^{n+1}},x\in F_{n+1,k},k=1,2,\cdots,2^n$称为Cantor函数
+}
+}
+
+\note[Cantor集(函数)的性质]{
+    1.零测集 2.非空有界闭集 3.完备集 4.疏集 5.不可数集\\
+    Cantor函数几乎处处导数值为零但却是个单调增函数
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+
+
+\end{document}

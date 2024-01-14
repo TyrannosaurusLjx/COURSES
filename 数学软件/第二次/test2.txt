@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Plesse enter a num"
+read num
+
+sum=0
+for i in `seq 1 $num`
+do
+        sum=$[$i*$i+$sum]
+done
+echo $sum
+exit 0

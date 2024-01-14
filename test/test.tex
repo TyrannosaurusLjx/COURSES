@@ -1,0 +1,89 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{集合与实数集}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\quad\&\quad}
+
+
+\begin{document}
+\maketitle
+
+
+要证明$m(E) = 1$，可以采用反证法。假设$m(E) < 1$，那么存在一个开区间$(a,b) \subset [0,1]$，使得$m(E \cap (a,b)) < b - a$。
+
+由于$E \subset [0,1]$，所以$E \cap (a,b) \subset (a,b)$。因此，对于任意的$I = (c,d) \subset (a,b)$，有：
+
+�
+(
+�
+∩
+�
+)
+≤
+�
+(
+�
+∩
+(
+�
+,
+�
+)
+)
+<
+�
+−
+�
+m(E∩I)≤m(E∩(a,b))<b−a
+
+又因为$E$是可测集，所以$E \cap (a,b)$也是可测集。根据可测集的定义，对于任意的$\epsilon > 0$，都存在开集$O \supset E \cap (a,b)$，使得$m(O \setminus (E \cap (a,b))) < \epsilon$。因为开集是可数个开区间的并集，所以存在一个开区间$I \subset (a,b)$，使得$I \cap (O \setminus (E \cap (a,b))) \neq \emptyset$。
+
+因此，$I \cap O \subset (a,b)$，且$I \cap O \subset E^c$。于是，$m(E \cap I) \leq m(O \setminus (E \cap (a,b))) < \epsilon$。取$\epsilon = \frac{b-a}{2}$，得到$m(E \cap I) < \frac{b-a}{2}$。这与$m(E \cap I) \leq \delta(b-a)$矛盾，因为$\delta < \frac{1}{2}$。因此，假设$m(E) < 1$不成立，即$m(E) = 1$。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}
