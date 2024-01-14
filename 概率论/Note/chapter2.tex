@@ -1,0 +1,85 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{概率论第一章节}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+
+随机变量：$\xi(\omega)$是定义在概率空间$\{\Omega,\mathcal{F},P\}$上的单值实函数，对于R上任何一个波雷尔集合B，有
+$\xi^{-1}(B)=\{\omega:\xi(\omega)\in B\}\in\mathcal{F}$,就称其为随机变量，$\{P(\xi(\omega))\in B\},B\in\mathcal{B}^{-1}$,称为随机变量的概率分布
+
+常见分布：单点分布，两点分布（伯努利分布），二项分布$\xi ~ B(n,p)$且$P(\xi = k)=b(k;n,p)$
+
+Possion定理：$if\;\exists\lambda>0,s.t.\lim\limits_{n\to\infty}np_n=\lambda,then\Rightarrow \lim\limits_{n\to\infty}b(k;n,p)=\frac{\lambda^k}{k!}e^{-\lambda} $
+
+一般来说p，n没有关系，但是当n很大，p很小，而np($\leq\infty$)又不那么大的时候就可以用possion定理
+
+possion分布：$P(\xi =k)=]frac{\lambda^k}{k!}e^{-\lambda},\lambda>0,k=0,1,\cdots$称$\xi$服从possion分布，记为$\xi ~P(\lambda)$
+,$\lambda$称为其参数，事实上他就是期望
+
+一般来说，n个事件每个事件发生的概率都很小，并且他们近似相互独立，那么这些事件发生的次数近似服从possion分布$P(\lambda),\lambda = \sum\limits_{i=1}^np_i$
+
+几何分布：$P(\xi=k)=pq^{k-1},p+q=1$.几何分布实际上就是说实验在第k次才成功，可以发现有性质:
+$P(\xi>m+k|\xi>m)=P(\xi>k)$,就是说前m次都失败了再继续试验，概率和从头开始是一样的，其实本质上就是每次试验独立，后面的实验和前面没有关系
+
+超几何分布：$P(\xi=k)=\frac{C_M^kC_{N-M}^{n-k}}{C_N^n}$
+
+\section*{分布函数和连续性随机变量}
+
+分布函数：$F(x)=P(\xi \leq x)$
+
+性质：1.单调不减性；2.$F(-\infty)=0,F(\infty)=1$；3.右连续性。分布函数有以上三个性质，反之有以上三个性质的函数一定是某个随机变量的分布函数
+
+由连续性随机变量的性质我们可以发现，取每一个特定的值的概率是零，但是不意味着这件事不能发生
+
+正态分布：又称高斯分布或者误差分布（对数量指标影响的因素有很多，但是每一个的影响都比较小）
+
+$U(o,1)$称为标准正态分布，密度函数和分布函数记$\phi,\Phi,\phi(x)=\frac{1}{\sqrt{2\pi}} e ^{-\frac{x^2}{2}},\Phi(x)=\int_{-\infty}^x\phi(t)dt$
+
+$\Phi(-x)=1-Phi(x)$
+
+计算某个特定的正态分布随机变量就转化成标准随机变量$\eta = \frac{\xi-\mu}{\delta}$
+
+指数分布是唯一有无记忆性的连续性随机分布
+
+
+
+联合分布函数$F(x,y)$,边际分布函数$F_\xi(x)=p(\xi\leq x,\eta <\infty)=F(x,\infty)$
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

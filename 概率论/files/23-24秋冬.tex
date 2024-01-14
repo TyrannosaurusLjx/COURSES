@@ -1,0 +1,75 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{23-24秋冬概率论}}
+%\author{luojunxun}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+
+1. 证明: $P\left(\bigcup_{i=1}^n A_i\right)=\sum_{i=1}^n P\left(A_i\right)-\sum_{1 \leq i<j \leqslant n} P\left(A_i \cap A_j\right)+\cdots+(-1)^{n-1} P\left(A_1 \cap A_2 \cdots \cap A_n\right)$
+
+2. 两批零件，第一种 $n_1$ 个，寿命 $X_1, \cdots X_{n 1} ， \sim E\left(\lambda_1\right)$ ，第二种 $n_2$ 个，
+
+寿命 $Y_1, \cdots, Y_{n_2} \sim E\left(\lambda_2\right)$ ，有一个零件失效则失效，记T为失效时间
+
+    (1) 证明 $T \sim E\left(\lambda_1 n_1+\lambda_2 n_2\right)$
+    
+    (2) 第一种零件失效导致失效的概率
+
+3. $X_1 \ldots X_n$ 独立同分布 $\sim P(\lambda)$
+$$
+S=x_1+\cdots+x_n \quad \bar{x}=\frac{x_1+\cdots+x_n}{n} \quad T=\frac{1}{n-1} \sum_{i=1}^n\left(x_i-\bar{x}\right)^2
+$$
+    (1) 计算 $ET$
+
+    (2) $S=s(s=0,1, \cdots)$ 时, 证明 $X_i \sim B\left(s, \frac{1}{n}\right)$
+    
+    (3) 计算 $E(T \mid S)$
+
+4. $p(x, y)=C(x-y)^2 e^{-\frac{1}{2}\left(x^2+y^2\right)}$
+
+    (1) 求 C
+
+    (2) 求 $P_x(x), P_y(y)$
+
+    (3) 计算 $r_{X Y}$
+
+    (4) 证明 $X+Y, X-Y$ 独立
+
+5. $X_i$ 独立同分布， $E\left|X_1\right|<\infty, \mu=E X_1$ ，证明 $\frac{S_n}{n} \stackrel{P}{\rightarrow} \mu$
+
+6. $N_p$ 服从几何分布，参数为 $p ， X_i$ 独立同分布 $\sim N\left(\mu, \sigma^2\right)$
+$$
+Y_p=\sum_{k=1}^{N_p} X_k
+$$
+
+    (1) 证明 $Y_p$ 是随机变量
+
+    (2) 求 $E Y_p$
+
+    (3) 求 $\operatorname{Var} Y_p$
+
+    (4) 证明 $Y_p$ 不是正态随机变量
+
+7. (附加) (1)证明 $Y_p$ 是连续型随机变量
+
+(2) $p \rightarrow 0$ ，证明 $Y_P$ 收敛到某个分布函数
+
+
+\end{document}

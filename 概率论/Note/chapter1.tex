@@ -1,0 +1,83 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{概率论第一章节}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+
+事件域$\mathscr{F}$：全集在其中，关于余运算封闭，可列并封闭，可列交封闭
+
+实际上，borel$\sigma$域取开区间，闭区间，左闭右开区间的时候是等价的
+
+概率函数三个性质:非负性，规范性，可列可加性
+
+$P(A) = 1-P(\bar{A}) $
+
+若$B\subset A,P(A-B) =P(A)-P(B)  $
+
+$P(A-B)=P(A)-P(AB)$
+
+$P(A\bigcup B)=P(A) +P(B)-P(AB) $
+
+多还少补公式$P(\bigcup_{i=1}^nA_i)=\sum\limits_{i=1}^nP(A_i) -\sum\limits_{1\leq i<j\leq n}P(A_iA_j)+\cdots+(-1)^{n-1}P(A_1A_2\cdots A_n) $
+
+次可加性$P(\sum\limits_{i=1}^n)\leq \sum\limits_{i=1}^n P(A_i) $
+
+如果一系列事件有极限，那么极限和概率函数可交换(满足交换律)
+
+\section*{条件概率}
+
+若$P(A_1\cdots A_{n-1})\neq 0,P(A_1A_2\cdots A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1A_2)\cdots P(A_n|A_1\cdots A_{n-1}) $
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}

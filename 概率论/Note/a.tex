@@ -1,0 +1,63 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{概率论第一章节}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+
+随机变量：$\xi(\omega)$是定义在概率空间$\{\Omega,\mathcal{F},P\}$上的单值实函数，对于R上任何一个波雷尔集合B，有
+$\xi^{-1}(B)=\{\omega:\xi(\omega)\in B\}\in\mathcal{F}$,就称其为随机变量，$\{P(\xi(\omega))\in B\},B\in\mathcal{B}^{-1}$,称为随机变量的概率分布
+
+常见分布：单点分布，两点分布（伯努利分布），二项分布$\xi ~ B(n,p)$且$P(\xi = k)=b(k;n,p)$
+
+Possion定理：$if\;\exists\lambda>0,s.t.\lim\limits_{n\to\infty}np_n=\lambda,then\Rightarrow \lim\limits_{n\to\infty}b(k;n,p)=\frac{\lambda^k}{k!}e^{-\lambda} $
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}
