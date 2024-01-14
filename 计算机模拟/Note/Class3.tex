@@ -1,0 +1,77 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{计算机模拟第二课}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+\newcommand{\qie}{\enspace\&\enspace}
+
+
+\begin{document}
+\maketitle
+随机数生成器：1.平方取中法；2.经典fibonacci生成器；3.线性同余
+
+1.平方取中法：取一个2s位的整数，称为种子，将其平凡得到一个4s位的整数，$x_{i+1}=[\frac{x_i^2}{10^s}]mod10^{2s}$
+取这4s位中间2s位作为下一个种子数，并归一化运算得到[0,1]之间的数$u_{i+1}=\frac{x_{i+1}}{10^{2s}}$
+
+1.1乘法取中法，常数乘子法等等
+
+2.经典fibonacci生成器 $x_i=(x_{i-1}+x_{i-1})\;mod\; M$产生[0,M-1]之间的随机数
+
+3.线性同余法：$x_i=(a*x_{i-1}+c)\;mod\;m$
+
+4.非线性同余器：
+
+5.梅森旋转
+
+
+随机数检验：1.理论检验；2.统计检验（一般检验按十进制检查，严格检验则为二进制）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}
