@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cmake",
+			"label": "CMake: 清理重新生成",
+			"command": "cleanRebuild",
+			"targets": [
+				"[N/a - 选择工具包]"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"detail": "CMake 模板 清理重新生成 任务"
+		}
+	]
+}
