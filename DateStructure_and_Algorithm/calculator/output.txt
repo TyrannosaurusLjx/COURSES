@@ -1,0 +1,50 @@
+1: 
+result=3  the Postfix is: 3  
+2:
+Error!
+3:
+Error!
+4:
+Error!
+5: 
+result=-245  the Postfix is: 1 90 8 - 3 * -  
+6: 
+result=800  the Postfix is: -4 8 4 7 * - * 8 2 + *  
+7: 
+result=14  the Postfix is: 2 3 4 * +  
+8: 
+result=5  the Postfix is: 1 2 + 3 * 4 -  
+9: 
+result=7  the Postfix is: 5 6 2 / + 1 -  
+10: 
+result=3.33333  the Postfix is: 4 3 2 + * 6 /  
+11: 
+result=15  the Postfix is: 2 3 + 4 1 - *  
+12: 
+result=12  the Postfix is: 8 4 2 / - 6 +  
+13: 
+result=12.5  the Postfix is: 3 4 5 + * 2 / 1 -  
+14: 
+result=16  the Postfix is: 6 2 + 4 * 3 1 - /  
+15: 
+result=3  the Postfix is: 7 2 5 3 - * -  
+16: 
+result=9  the Postfix is: 2 3 4 + * 5 -  
+17:
+Error!
+18:
+Error!
+19:
+Error!
+20:
+Error!
+21:
+Error!
+22:
+Error!
+23:
+Error!
+24:
+Error!
+25:
+Error!
