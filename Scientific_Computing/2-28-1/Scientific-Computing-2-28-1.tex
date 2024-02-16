@@ -1,0 +1,75 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,color}
+
+\title{\huge\textbf{第一章-误差}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+\section*{种类}
+\Def[模型误差]{数学模型本身存在的误差(比如在运动方程中忽略了空气阻力,这就造成模型与真实值不符)}
+\Def[观测误差]{在观测数据的时候产生的误差}
+\Def[数据误差]{数据可能由先前的数据计算得到,在这个计算的过程中可能产生误差}
+\Def[舍入误差]{计算机运算得到的近似值和精确值之间的误差(由于计算机计算无穷项的时候只计算了前面有限项,后面的无穷项被舍弃了)}
+\Def[绝对误差]{近似值和精确值的差}
+\Def[相对误差]{绝对误差和精确值的比}
+\Def[相对误差限]{相对误差最大的限度$(3.1415<\pi<3.1416,\to |\frac{\hat{x}-\pi}{\pi}|\leq |\frac{3.14-3.1415}{3,1415}|\leq 0.0006)$
+也就是用一个数控制住相对误差}
+\Def[有效数字]{注意保留有效数字要对下一项做四舍五入}
+
+\section*{近似计算的注意点}
+\Def[误差传播]{\\
+    用微分表示绝对误差$dx=\hat{x}-x,dy=\hat{y}-y:\to \hat{x}\hat{y}-xy=d(xy)=xdy+ydx$(以此类推)\\
+    且有相对误差界$d_rx=|\frac{dx}{x}|=|d\ln{|x|}|$
+}
+
+\note[近似计算]{
+    \\
+    1.避免两个相近的数相减:$\sqrt{x+1}-\sqrt{x}=\frac{1}{\sqrt{x+1}+\sqrt{x}}$\\
+    2.防止大数吃掉小数\\
+    3.简化计算步骤:比如使用秦九韶算法\\
+    4.避免用绝对值小的数去除绝对值大的数,防止数据溢出\\
+    5.用数值计算稳定的计算公式\\
+    6.用更有效的计算方法:计算$\ln 2$\\
+        $\ln(x+1)=x-\frac{x^2}{2}+\cdots$取x=1即可,但是这个级数收敛很慢\\
+        $\ln(\frac{1+x}{1-x})=2(x+\frac{x^3}{3}+\cdots)$取$x=\frac{1}{3}$收敛很快
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
