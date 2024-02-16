@@ -1,0 +1,148 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows , amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{Preliminaries to Complex Analysis}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+
+\Def[C]{
+    $C\sim R^2:algebra+geometry+analysis+topology$\\
+    there are multiply,addition,conjugation and mudule in C ;
+    \\
+    \center{$\color{red}{z=x+iy=re^{i\theta}}=\left(\begin{matrix} x&-y\\y&x\end{matrix}\right)$}
+}
+\\
+\\
+\section*{algebra}
+\note[{\color{red}the relationship between vector , complex and linear transformation}]{
+    \\
+    $z=x+iy\to 
+    \left(\begin{matrix}
+        x\\y
+    \end{matrix}\right)
+    \to \left(\begin{matrix}
+        x&-y\\y&x
+    \end{matrix}\right):\quad i(x+iy)=
+    \left(\begin{matrix}
+        0&-1\\1&0
+    \end{matrix}\right)
+    \left(\begin{matrix}
+        x\\y
+    \end{matrix}\right)=
+    \left(\begin{matrix}
+        -y\\x
+    \end{matrix}\right)=
+    -y+ix$\\
+    \begin{center}  
+    $ r\to
+    \left(
+        \begin{matrix}
+            r&0\\0&r
+        \end{matrix}
+    \right)\quad
+    e^{i\theta}\to
+    \left(
+        \begin{matrix}
+            \cos\theta&-\sin\theta\\
+            \sin\theta&\cos\theta
+        \end{matrix}
+    \right)$
+    \end{center}
+    Generraly:$f:C\to Gl_2(R)\cup{O};s.t.f(x+iy)=
+    \left(
+        \begin{matrix}
+            x&-y\\y&x
+        \end{matrix}
+    \right)$
+    C operate on itself.
+}
+\\\\
+
+
+\section*{topology}
+$D_r(z_0)=\{z||z-z_0|<r\};\overline{D_r}(z_0)=\{z||z-z_0|\leq r\};C_r(z_0)=\{z||z-z_0|=r\}$\\
+$\Omega\subset C:diam(\Omega)=\sup\limits_{z,w\in \Omega}|z-w|$\\
+1.interior point:$\exists r>0,s.t.D_r(z_0)\subset \Omega$\\
+2.open set:every point is interior point.\\
+3.closed set:$C-\Omega$ is open.\\
+4.limit point:$\exists \{z_n\}_{n=1}^\infty ,z_n\neq z_O,\lim\limits_{n\to\infty}z_n=z_0$\\
+5.closure of $\Omega$ is the union of $\Omega$ and its limit points\\
+6.the boundry $\partial{\Omega}=\{z|\forall r>0,D_r(z)\cap \Omega\neq\emptyset;D_r(z)\cap {(C-\Omega)}\neq\emptyset\}$\\
+7.$\Omega$ closed $\iff \Omega=\overline{\Omega}$\\
+8.compact = closed + boundry:$
+    \begin{cases}
+        1.for\;every\;sequence\{z_n\},there\;exists\;a\;subsequence\{z_{n_k}\}\;that\\\;converges\;to\;a\;point\;in\;\Omega\\
+        2.every\;open\;covering\;has\;a\;finite\;subcovering
+    \end{cases}$
+9.$\Omega_1\subset\Omega_2\cdots\Omega_n\subset\cdots,diam(\Omega_n)\to 0;\rightarrow\exists !z\in\omega_n,\forall n$\\
+10.connected:it is impossiable to find two disjoint non-empty open set $\Omega_1$ and $\Omega_2$ $s.t.\Omega_1\cup \Omega_2=\Omega$\\
+11.path connected:for any two points in $\Omega$,there is a path connected them.\\
+12.a connected open set is called region.
+
+\section*{analysis}
+Continues Function f:$\Omega\to C$;\\
+Complex Differentiable Function = Holompic Function\\
+$f\;is\;Holompic\iff\lim\limits_{h\to 0}\frac{f(z+h)-f(z)}{h}coverges,called\;f'(z)$ \\
+for complex function , the First-order Differentiablility$\iff$n-order Differentiable.\\
+
+\theorem[1.1]{f is Holompic iff f is real-Differentiable and maintain C-R-Eq}
+
+\Def[Def]{
+    $F=f:\Omega\subset C\to C,f(z)=f(x+iy)=F(x,y)=u(x,y)+iv(x,y)=\left(u(x,y),\\v(x,y)\right)^T$\\
+    $P_0(x_0,y_0),H=(h_1,h_2)=h_1+ih_2$\\
+    \\then F is said to be differrentiable at $P_0$ if there exists a linear transformation\\
+    $J:R^2\to R^2;\\s.t.\lim\limits_{|H|\to 0}\frac{|F(P_0+H)-F(P_0)-JH|}{|H|\to 0}=0\iff 
+    F(P_0+H)-F(P_0)=JH+H\psi(H);\psi(H)=o(H)$\\
+    then J is called the derivative of F at $P_0$ ,if F is differrentiable , the partial derivative of u and c 
+    exists , the J is the Jacobian matrix:$J=J_F=\left(\begin{matrix} \frac{\partial{u}}{\partial{x}}
+    &\frac{\partial{u}}{\partial{y}}\\\frac{\partial{v}}{\partial{x}}&\frac{\partial{v}}{\partial{y}}
+    \end{matrix}\right)$}
+
+\section*{Chuchy-Riemann-Equationa}
+assume f=F is Holompic ,and then $\frac{\partial{f}}{\partial{z}}\xlongequal{h=h_1+h_2}
+\begin{cases}
+    \lim\limits_{h_1\to 0}\frac{f(x_0+h_1,Y_0)-f(x_0,y_0)}{h_1}&h_2=0\\
+    \lim\limits_{h_2\to 0}\frac{f(x_0,Y_0+h_2)-f(x_0,y_0)}{h_2}&h_1=0    
+\end{cases}$\\
+\begin{center}  
+thus $\frac{\partial{u}}{\partial{x}}=\frac{\partial{v}}{\partial{y}}\;and\;
+    \frac{\partial{u}}{\partial{y}}=-\frac{\partial{v}}{\partial{x}}$\\
+    $define:\frac{\partial}{\partial{z}}=\frac{1}{2}(\frac{\partial}{\partial{x}}+\frac{1}{i}\frac{\partial}{\partial{y}})
+    \quad\frac{\partial}{\partial{\overline{z}}}=\frac{1}{2}(\frac{\partial}{\partial{x}}-\frac{1}{i}\frac{\partial}{\partial{y}})$
+\end{center}
+\begin{center}
+    If f is Holompic at $P_0\;\Rightarrow \frac{\partial{f}}{\partial{\overline{z}}}=0\;and\;f'(z_0)=\frac{\partial{f}}{\partial{z}}(z_0)=
+    2\frac{\partial{u}}{\partial{z}}\;and\;\det{J_f(P_0)}=|f'(z_0)|^2$
+\end{center}
+\begin{center}
+    with C-R-Eq , $J_F(x_0,y_0)=\left(\begin{matrix}
+        \frac{\partial{u}}{\partial{x}}
+        &\frac{\partial{u}}{\partial{y}}\\\frac{\partial{v}}{\partial{x}}&\frac{\partial{v}}{\partial{y}}
+    \end{matrix}\right)
+    =
+    \left(\begin{matrix}
+        \frac{\partial{u}}{\partial{x}}
+        &-\frac{\partial{v}}{\partial{x}}\\\frac{\partial{v}}{\partial{x}}&\frac{\partial{u}}{\partial{x}}
+    \end{matrix}\right)
+    =\frac{\partial{u}}{\partial{x}}+i\frac{\partial{v}}{\partial{x}}=f_x(x_0,y_0)$
+\end{center}
+
+
+
+\end{document}

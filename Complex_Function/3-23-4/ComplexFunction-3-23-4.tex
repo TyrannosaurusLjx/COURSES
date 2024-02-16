@@ -1,0 +1,79 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath,extarrows, amsthm, amssymb, bm, graphicx, hyperref, geometry, mathrsfs,color}
+
+\title{\huge\textbf{Futher Application}}
+\author{luojunxun}
+\date{\today}
+\linespread{2}%行间距
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}%设置页面
+\CTEXsetup[format={\Large\bfseries}]{section}%section左对齐
+
+%定义环境
+\newenvironment{Def}[1][def-name]{\par\noindent{\textit{(#1):}\small}}{\\\par}
+\newenvironment{theorem}[1][Theorem-name]{\par\noindent \textbf{Theorem #1:}\textit}{\\\par}
+\newenvironment{corollary}[1][corollary-name]{\par\noindent \textbf{Corollary #1:}\textit}{\\\par\vspace*{15pt}}
+\newenvironment{lemma}[1][lemma-name]{\par\noindent \textbf{Lemma #1:}\textbf}{\\\par}
+\renewenvironment{proof}{\par\noindent{\textit{Proof:}\small}}{\\\par}
+\newenvironment{example}[1][example-name]{\par{\textbf{Example:}}}{\\\par}
+\newenvironment{say}{\center{\textit{summary:}}}{\\\par}
+\newenvironment{note}[1][note-name]{\par\textit{#1:}}{\\\par}
+
+
+\begin{document}
+\maketitle
+\Def[Princiole of Analytic Continuation]{every polynomial of order n have n roots in C}
+\theorem[4.8]{f is defined on a region $\Omega$,if there is a sequence named $\{x_n\}\subset\Omega$ 
+: $x_n\to x\in\Omega$ and $f(x_n)=0$ for all n;then $f\equiv 0$}
+
+\corollary[4.9]{then if we need to judge function f=g in $\Omega$,just to find a sequence $\{x_n\}\subset\Omega:x_n\to x\in\Omega$ 
+s.t. $f(x_n)=g(x_n)$ for all n}\vspace*{5pt}
+
+\theorem[Morera's theorem]{Supposed f is a continuous function in the open disc D s.t. for any triangle T containded in D:
+$\int_T f(z)dz=0$ then f is Hol on D}\vspace*{5pt}
+
+\section*{Application}
+
+Sequences of holomorphic functions
+
+\theorem[5.2]{if $\{f_n\}_{n=1}^\infty$ is a sequence of holomorphic functions that converges uniformly to a function f in every compact set of $\Omega$ then f is holomorphic in $\Omega$}
+\corollary[5.3]{then the sequence of dirivatives $\{f'_n\}$ converges uniformly to f' on every compact set of $\Omega$}\vspace*{5pt}
+
+Holomorphic functions defined in terms of integrals
+
+\theorem[5.4]{F(z,s) defined in $\Omega\times [0,1]$,$\Omega$ is an open set ,if:1$.F(z,s)$ is hol in z for each s. 2.F is continuous on $\Omega\times [0,1]$:then $f(z) = \int_o^1F(z,s)ds$ is holomorphic }\vspace*{5pt}
+
+Schwarz reflection principle
+\theorem[Symmetry principle]{if $f^+$ and $f^-$ are hol on $\Omega^+$ and $\Omega^-$ respectively, and $f^+(x)=f^-(x),\forall x\in I = \Omega^+\cap\Omega^-$ ,then:
+$F=\begin{cases}f^+&x\in \Omega^+\\f^+=f^-&x\in I\\f^-&x\in \Omega^- \end{cases}$ is hol on $\Omega$}
+\theorem[Schwarz reflection principle]{f hol on $\Omega^+$ and extends continuously to I and s.t. f(x) is a real function while x$\in$I,then there exists a function F s.t. F hol on $\Omega$ }
+\proof[Srp]{define $F(z)=\overline{f(\overline{z})}\;while\;z\in\Omega^-$}
+
+Runge's approximation Theorem
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{figure}[p]
+
+%     \centerline{\includegraphics[width=1.2\linewidth,height=1.1\textheight]{name}}
+%     \caption{课上习题}
+%     \label{figure}
+
+%\end{figure}
+
+
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{reference}
+
+
+
+\end{document}
