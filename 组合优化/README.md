@@ -1,2 +1,0 @@
-# COP
-combinatortial optimization

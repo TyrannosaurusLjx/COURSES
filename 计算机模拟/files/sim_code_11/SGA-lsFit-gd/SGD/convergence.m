@@ -1,2 +1,0 @@
-hold off;
-plot(res);

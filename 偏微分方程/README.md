@@ -1,2 +1,0 @@
-# PDE
-partial differential equations
