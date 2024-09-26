@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{引言}{3}{0}{1}
+\beamer@sectionintoc {2}{模式定理}{4}{0}{2}
+\beamer@sectionintoc {3}{积木块假设和遗传算法的欺骗问题}{10}{0}{3}
+\beamer@sectionintoc {4}{GA-hard问题}{14}{0}{4}
