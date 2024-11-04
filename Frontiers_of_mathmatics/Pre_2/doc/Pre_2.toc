@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{EM 算法介绍}{3}{0}{1}
+\beamer@sectionintoc {2}{EM 算法导出}{5}{0}{2}
+\beamer@sectionintoc {3}{EM 算法收敛性证明}{7}{0}{3}
+\beamer@sectionintoc {4}{EM 算法举例}{9}{0}{4}

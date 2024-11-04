@@ -1,0 +1,203 @@
+%# -*- coding:utf-8 -*-
+\documentclass[10pt,aspectratio=169,mathserif]{beamer}		
+%设置为 Beamer 文档类型，设置字体为 10pt，长宽比为16:9，数学字体为 serif 风格
+
+%%%%-----导入宏包-----%%%%
+\usepackage{zju}			%导入 zju 模板宏包
+\usepackage{ctex}			%导入 ctex 宏包，添加中文支持
+\usepackage{amsmath,amsfonts,amssymb,bm}   %导入数学公式所需宏包
+\usepackage{color}			 %字体颜色支持
+\usepackage{graphicx,hyperref,url}
+\usepackage{metalogo}	% 非必须
+\usepackage{ragged2e}
+%% 上文引用的包可按实际情况自行增删
+%%%%%%%%%%%%%%%%%%
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont{Source Han Sans SC}
+
+
+
+\beamertemplateballitem		%设置 Beamer 主题
+
+%%%%------------------------%%%%%
+\catcode`\。=\active         %或者=13
+\newcommand{。}{．}				
+%将正文中的“。”号转换为“.”。中文标点国家规范建议科技文献中的句号用圆点替代
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%----首页信息设置----%%%%
+\title[exceptation maximization algorithm]{EM 算法及其推广}
+\subtitle{--算法介绍和收敛性证明}			
+%%%%----标题设置
+
+
+\author[罗俊勋]{
+  罗俊勋
+}
+  
+\institute[IOPP]{
+  School of Mathmatical\\ 
+  Zhejiang University}
+%%%%----机构信息
+
+\date[Sept. 25 2024]{
+  2024年11月06日}
+%%%%----日期信息
+  
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}				%生成标题页
+
+
+\begin{frame}
+%%  	\frametitle{提纲}
+	\tableofcontents
+\end{frame}				%生成提纲页
+
+\section{EM 算法介绍}
+\begin{frame}
+  \frametitle{EM 算法介绍}
+  \begin{block}{适用场景}
+  适用于模型已知，参数未定的情况：如果没有隐变量就直接使用最大似然估计，若不然考虑使用 EM 算法。
+  
+  \begin{itemize}
+    \item 统计男女生身高，已知其服从正态分布，但不同性别的均值和方差未知。(数据混在一起)
+      \begin{itemize}
+        \item 根据名字判断性别，但有些名字是中性的。
+        \item 根据身高判断性别，但有些人的身高不符合性别特征。
+      \end{itemize}
+    
+    \item 三枚质量不均的硬币 $A,B,C$ ，正面出现的结果为 $\pi,p,q$。每一次实验抛掷两次，第一次抛 $A$, 如果正面则抛 $B$，否则抛 $C$，只记录最后一次的结果。正面为 1，反面为 0。
+
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EM 算法流程和 Q 函数定义}
+  \begin{block}{算法流程}
+    算法接受变量数据 $Y$, 隐变量数据 $Z$, 联合分布 $P(Y,Z|\theta)$, 条件分布 $P(Z|Y,\theta)$。输出参数 $\theta$。
+
+    \begin{itemize}
+      \item 初始化参数 $\theta^{(0)}$。
+      \item $E$ 步： $Q(\theta,\theta^{(i)}) = \mathbb{E}_Z [\log P(Y,Z|\theta)|Y,\theta^{(i)}]$
+      \item $M$ 步： $\theta^{(i+1)} = \arg\max\limits_{\theta} Q(\theta,\theta^{(i)})$
+      \item 重复 $E,M$ 步骤，直到满足收敛条件
+    \end{itemize}
+  \end{block}
+  
+  \begin{block}{$Q$ 函数}
+    完全数据的对数似然函数 $\log P(Y,Z|\theta)$ 关于给定观测数据 $Y$， 和当前参数 $\theta^{(i)}$, 下对未观测数据 $Z$ 的期望
+
+    $$Q(\theta,\theta^{(i)}) = \mathbb{E}_Z [\log P(Y,Z|\theta)|Y,\theta^{(i)}]$$
+  \end{block}
+\end{frame}
+
+\section{EM 算法导出}
+
+\begin{frame}
+  \frametitle {算法导出}
+  要通过迭代求出 $L(\theta) = P(Y|\theta)$ 的极值，我们希望 $L(\theta^{(i+1)})\geq L(\theta^{(i)})$  
+  
+  \begin{align*}
+    L(\theta)-L\left(\theta^{(i)}\right) & =\log \left(\sum_Z P\left(Z \mid Y, \theta^{(i)}\right) \frac{P(Y \mid Z, \theta) P(Z \mid \theta)}{P\left(Z \mid Y, \theta^{(i)}\right)}\right)-\log P\left(Y \mid \theta^{(i)}\right) \\
+    & \geq \sum_Z P\left(Z \mid Y, \theta^{(i)}\right) \log \frac{P(Y \mid Z, \theta) P(Z \mid \theta)}{P\left(Z \mid Y, \theta^{(i)}\right)}-\log P\left(Y \mid \theta^{(i)}\right) \\
+    & =\sum_Z P\left(Z \mid Y, \theta^{(i)}\right) \log \frac{P(Y \mid Z, \theta) P(Z \mid \theta)}{P\left(Z \mid Y, \theta^{(i)}\right) P\left(Y \mid \theta^{(i)}\right)}
+  \end{align*}
+  
+  令 $B(\theta,\theta^{(i)}) = L(\theta^{(i)}) + \sum_Z P\left(Z \mid Y, \theta^{(i)}\right) \log \frac{P(Y \mid Z, \theta) P(Z \mid \theta)}{P\left(Z \mid Y, \theta^{(i)}\right) P\left(Y \mid \theta^{(i)}\right)}$
+  则 $L(\theta^{(i)}) \geq B(\theta,\theta^{(i)})$, 当且仅当 $\theta = \theta^{(i)}$ 时取等
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle {算法导出}
+  当我们尝试去优化下界，也就是命 $\theta^{(i+1)} = \arg\max\limits_{\theta} B(\theta,\theta^{(i)})$, 时，有：
+
+  \begin{align*}
+    \theta^{(i+1)} & =\arg \max _\theta\left(L\left(\theta^{(i)}\right)+\sum_Z P\left(Z \mid Y, \theta^{(i)}\right) \log \frac{P(Y \mid Z, \theta) P(Z \mid \theta)}{P\left(Z \mid Y, \theta^{(i)}\right) P\left(Y \mid \theta^{(i)}\right)}\right) \\
+    & =\arg \max _\theta\left(\sum_Z P\left(Z \mid Y, \theta^{(i)}\right) \log (P(Y \mid Z, \theta) P(Z \mid \theta))\right) \\
+    & =\arg \max _\theta\left(\sum_Z P\left(Z \mid Y, \theta^{(i)}\right) \log P(Y, Z \mid \theta)\right) \\
+    & =\arg \max _\theta Q\left(\theta, \theta^{(i)}\right)
+  \end{align*}
+  
+  这就是我们在 $M$ 步中做的事
+
+
+\end{frame}
+
+\section{EM 算法收敛性证明}
+\begin{frame}
+  \frametitle {收敛性证明}
+  % \begin{block}{$\{P(Y||theta^{(i)})\}_{i=1}^\infty$ 单增}
+    因为
+    $$
+    P(Y|\theta) = \frac{ P(Y,Z|\theta) }{ P(Z|Y,\theta) }
+    $$
+    令
+    $$
+    H(\theta,\theta^{(i)}) = \sum\limits_{Z}P(Z|Y,\theta^{(i)})\log P(Z|Y,\theta) 
+    $$
+    并且
+    $$
+    Q(\theta,\theta^{(i)}) = \sum\limits_{Z}P(Z|Y,\theta^{(i)}) \log P(Z,Y|\theta) 
+    $$
+    那么对数似然函数
+    \begin{align*}
+      L(\theta) &= \log P(Y|\theta) = \log P(Y,Z|\theta) - \log P(Z|Y,\theta) \\
+      &= \sum\limits_{Z} P(Z|Y,\theta^{(i)})\log P(Z,Y|\theta)  - P(Z|Y,\theta^{(i)})\sum\limits_{Z} \log P(Z|Y,\theta)  \\
+      &= Q(\theta,\theta^{(i)}) - H(\theta,\theta^{(i)})
+      \\
+    \end{align*} 
+  % \end{block}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle {收敛性证明}
+  $L(\theta^{(i+1)})-L(\theta^{(i)}) = \left[ Q(\theta^{(i+1)}) - Q(\theta^{(i)}) \right] - \left[ H(\theta^{(i+1)}) - H(\theta^{(i)}) \right]$
+  
+  前半部分已经为非负，现在考虑后半部分
+
+  $$
+  \begin{aligned} 
+    H\left(\theta^{(i+1)}, \theta^{(i)}\right)-H\left(\theta^{(i)}, \theta^{(i)}\right) & =\sum_Z\left(\log \frac{P\left(Z \mid Y, \theta^{(i+1)}\right)}{P\left(Z \mid Y, \theta^{(i)}\right)}\right) P\left(Z \mid Y, \theta^{(i)}\right) \\ 
+      & \leqslant \log \left(\sum_Z \frac{P\left(Z \mid Y, \theta^{(i+1)}\right)}{P\left(Z \mid Y, \theta^{(i)}\right)} P\left(Z \mid Y, \theta^{(i)}\right)\right) \\ 
+      & =\log \left(\sum_Z P\left(Z \mid Y, \theta^{(i+1)}\right)\right)=0
+  \end{aligned}
+  $$
+  
+  这就得到了$L(\theta^{(i+1)})\geq L(\theta^{(i)})$
+  
+  显然有 $L(\theta) \leq 1$ 根据单调有界定理，$\{L(\theta^{(i)})\}_{i=1}^\infty$ 收敛。
+\end{frame}
+
+\section{EM 算法举例}
+\begin{frame}
+  \frametitle{混合高斯}
+  现有男女生共 100人，已知男女生升高分别服从正态分布。求分布的各个参数
+  \begin{itemize}
+    \item 初始化 $\theta_0 = (\mu_b,\mu_g,\sigma_b,\sigma_b)$
+    \item E-step: 计算 $P(Z|Y,\theta)$
+    \begin{itemize}
+      \item 每个人是男生的概率： $\vec{P_b} = f_{\mu_b,\sigma_b}(Y)$
+      \item 每个人是女生的概率： $\vec{P_g} = f_{\mu_g,\sigma_g}(Y)$
+      \item 按概率大小更新 $Z$: $Z = \vec{P_b} > \vec{P_g}$
+    \end{itemize}
+    \item M-step: 这里求最大很简单，直接让估计值等于样本的均值和方差
+    \begin{itemize}
+      \item $\mu_b = \frac{\sum\limits_{Z == 1}Y}{\sum\limits_{Z == 1}1}$
+      \item $\sigma_b = \sqrt{\frac{\sum\limits_{Z == 1} (Y - \mu_b)^2}{\sum\limits_{Z == 1} 1}}$
+      \item $\mu_g = \frac{\sum\limits_{Z == 0} Y}{\sum\limits_{Z == 0} 1}$
+      \item $\sigma_g = \sqrt{\frac{\sum\limits_{Z == 0} (Y - \mu_g)^2}{\sum\limits_{Z == 0} 1}}$
+    \end{itemize}
+    \item 重复 E,M 步骤，直到满足收敛条件
+  \end{itemize}
+\end{frame}
+
+\section*{\centering \LARGE 结语}
+
+\end{document}
